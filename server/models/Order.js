@@ -7,16 +7,6 @@ const orderSchema = new Schema({
     type: Date,
     default: Date.now
   },
-  shipTo: {
-    type: String,
-    trim: true
-  },
-  shipToAddress: {
-    type: String
-  },
-  message: {
-    type: String
-  },
   products: [
     {
       type: Schema.Types.ObjectId,
