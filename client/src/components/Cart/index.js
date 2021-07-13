@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import React, { useEffect } from "react";
 import { TOGGLE_CART, ADD_MULTIPLE_TO_CART } from "../../utils/actions";
 import { idbPromise } from "../../utils/helpers";
@@ -17,8 +18,6 @@ const Cart = () => {
 
     const [state, dispatch] = useStoreContext();
 
-    const [getCheckout, { data }] = useLazyQuery(QUERY_CHECKOUT);
-
     function toggleCart() {
         dispatch({ type: TOGGLE_CART });
     }
@@ -29,20 +28,6 @@ const Cart = () => {
             sum += item.price * item.purchaseQuantity;
         });
         return sum.toFixed(2);
-    }
-
-    function submitCheckout() {
-        const productIds = [];
-
-        state.cart.forEach((item) => {
-            for (let i = 0; i < item.purchaseQuantity; i++) {
-                productIds.push(item._id);
-            }
-        });
-
-        getCheckout({
-            variables: { products: productIds }
-        });
     }
 
     useEffect(() => {
@@ -56,17 +41,7 @@ const Cart = () => {
         }
     }, [state.cart.length, dispatch]);
 
-    // for checkout
-    useEffect(() => {
-        if (data) {
-            stripePromise.then((res) => {
-                res.redirectToCheckout({ sessionId: data.checkout.session });
-            });
-        }
-    }, [data]);
-
-
-
+    
     if (!state.cartOpen) {
         return (
             <div className="cart-closed" onClick={toggleCart}>
@@ -76,11 +51,10 @@ const Cart = () => {
             </div>
         );
     }
-
     return (
         <div className="cart">
-            <div className="close" onClick={toggleCart}>[close]</div>
-            <h2>Shopping Cart</h2>
+            <div className="close" onClick={toggleCart}>Close</div>
+            <h2>Flower Cart</h2>
             {state.cart.length ? (
                 <div>
                     {state.cart.map(item => (
@@ -88,14 +62,11 @@ const Cart = () => {
                     ))}
                     <div className="flex-row space-between">
                         <strong>Total: ${calculateTotal()}</strong>
-                        {
-                            Auth.loggedIn() ?
-                                <button onClick={submitCheckout}>
-                                    Checkout
-                                </button>
-                                :
-                                <span>(log in to check out)</span>
-                        }
+                        <Link to="/cart">
+                            <button>
+                                Checkout
+                            </button>
+                        </Link>
                     </div>
                 </div>
             ) : (
@@ -103,11 +74,10 @@ const Cart = () => {
                     <span role="img" aria-label="shocked">
                         😱
                     </span>
-                    You haven't added anything to your cart yet!
+                    No items have been added to the cart!
                 </h3>
             )}
         </div>
     );
 };
-
 export default Cart;
