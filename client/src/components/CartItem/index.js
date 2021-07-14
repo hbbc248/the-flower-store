@@ -48,25 +48,25 @@ const CartItem = ({ item }) => {
   };
 
   return (
-    <div className='row justify-content-center align-items-center border p-3'>
-      <div className='col-sm'>
+    <div className='row justify-content-center align-items-center border p-1'>
+      <div className='col-md'>
         <img
           src={`/images/${item.image}`}
           alt=""
           className='m-1 img-thumbnail'
         />
       </div>
-      <div className='col-sm'>
+      <div className='col-md'>
         <div>
           <h5>{item.name}</h5> 
         </div>
       </div>
-      <div className='col-sm'>
+      <div className='col-md'>
         <div>
           <h6>${item.price}</h6>
         </div>
       </div>
-      <div className='col-sm'>
+      <div className='col-md'>
           <span>Qty:</span>
           <input
             type="number"

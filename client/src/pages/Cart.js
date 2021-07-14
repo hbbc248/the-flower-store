@@ -68,17 +68,18 @@ const CartPage = () => {
 
 
     return (
-        <div className="m-3 text-center">
-            <h2 className='mb-3'>Items in your cart:</h2>
+        <div className="m-3">
+            <div className="text-center">
+                <h2 className='mb-3'>Items in your cart:</h2>
+            </div>
             {state.cart.length ? (
                 <div className='container'>
                     {state.cart.map(item => (
                         <CartItem key={item._id} item={item} />
                     ))}
 
-                    <div className="flex-row space-between">
-                        <strong>Total: ${calculateTotal()}</strong>
-
+                    <div className="text-right mr-md-4">
+                        <h2>Total: ${calculateTotal()}</h2>
                     </div>
                     <form className="my-3">
                         <div className="form-row">
@@ -96,8 +97,6 @@ const CartPage = () => {
                                 <label for="ShipTo">Message (Optional):</label>
                                 <input type="message" className="form-control" placeholder="Enter message" id="message" />
                             </div>
-
-
                         </div>
 
                     </form>
