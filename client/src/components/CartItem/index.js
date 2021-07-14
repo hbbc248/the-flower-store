@@ -9,12 +9,21 @@ const CartItem = ({ item }) => {
   const [, dispatch] = useStoreContext();
 
   const removeFromCart = item => {
-    dispatch({
-      type: REMOVE_FROM_CART,
-      _id: item._id
-    });
-    idbPromise('cart', 'delete', { ...item });
-  };
+    if(item.purchaseQuantity - 1 > 0){
+        dispatch({
+            type: UPDATE_CART_QUANTITY,
+            _id: item._id,
+            purchaseQuantity: parseInt(item.purchaseQuantity) - 1
+        })
+        idbPromise('cart','put', { ...item, purchaseQuantity: parseInt(item.purchaseQuantity) - 1 })
+    } else {
+        dispatch({
+            type: REMOVE_FROM_CART,
+            _id: item._id
+        })
+        idbPromise('cart','delete', {...item})
+    }
+};
 
   const onChange = (e) => {
     const value = e.target.value;
