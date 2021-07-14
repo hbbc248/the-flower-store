@@ -68,7 +68,7 @@ const CartPage = () => {
 
     return (
         <div className="">
-            <h2>Shopping Cart</h2>
+            <h2>Items in your cart:</h2>
             {state.cart.length ? (
                 <div>
                     {state.cart.map(item => (
