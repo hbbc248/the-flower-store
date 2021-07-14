@@ -52,8 +52,8 @@ function Nav() {
   return (
   <header>
     <div className='text-center'>
-      <Link className="navbar-brand"to="/">
-        {/* <img src='../../images/flowerShopLogo.png'/> */}
+      <Link className="navbar-brand" to="/">
+        <img src='../../images/flowerShopLogo.png'/>
       </Link>
     </div>
     <nav className="navbar navbar-expand-lg">
@@ -69,4 +69,5 @@ function Nav() {
 }
 
 export default Nav;
+
 

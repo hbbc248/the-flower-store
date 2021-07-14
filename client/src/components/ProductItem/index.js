@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { pluralize } from "../../utils/helpers"
-
+import '../../index.css';
 import { useStoreContext } from '../../utils/GlobalState';
 import { ADD_TO_CART, UPDATE_CART_QUANTITY } from '../../utils/actions';
 
@@ -51,13 +51,13 @@ function ProductItem(item) {
             src={`/images/${image}`}
           />
 
-          <h6 className="card-title text-center text-info">{name}</h6>
+          <h6 className="card-title text-center">{name}</h6>
         </Link>
         <div>
           <div></div>
           <h6 className="text-center">${price}</h6>
         </div>
-        <button className="btn btn-info" onClick={addToCart}>Add to cart</button>
+        <button className="btn" onClick={addToCart}>Add to cart</button>
 
       </div>
     </div>

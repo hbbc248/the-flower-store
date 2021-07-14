@@ -49,31 +49,32 @@ const CartItem = ({ item }) => {
 
   return (
     <div className='row justify-content-center border p-3'>
-      <div className='col-3'>
+      <div className='col-sm'>
         <img
           src={`/images/${item.image}`}
           alt=""
           className='m-1 img-thumbnail'
         />
       </div>
-      <div className='col-3'>
+      <div className='col-sm'>
         <div>
           <h5>{item.name}</h5> 
         </div>
       </div>
-      <div className='col-3'>
+      <div className='col-sm'>
         <div>
           <h6>${item.price}</h6>
         </div>
       </div>
-      <div className='col-3'>
+      <div className='col-sm'>
           <span>Qty:</span>
           <input
             type="number"
             placeholder="1"
-            className='p-1'
+            className='p-1 form-control'
             value={item.purchaseQuantity}
             onChange={onChange}
+            // style={{width '18em'}}
           />
           <span
             role="img"

@@ -56,14 +56,14 @@ const Cart = () => {
             <div className="close" onClick={toggleCart}>Close</div>
             <h2>Flower Cart</h2>
             {state.cart.length ? (
-                <div>
+                <div className='container'>
                     {state.cart.map(item => (
                         <CartItem key={item._id} item={item} />
                     ))}
-                    <div className="flex-row space-between mt-1">
+                    <div className="flex-row space-between m-1">
                         <strong>Total: ${calculateTotal()}</strong>
                         <Link to="/cart">
-                            <button>
+                            <button className='btn ml-1'>
                                 Checkout
                             </button>
                         </Link>
