@@ -67,10 +67,10 @@ const CartPage = () => {
 
 
     return (
-        <div className="m-3">
-            <h2>Items in your cart:</h2>
+        <div className="m-3 text-center">
+            <h2 className='mb-3'>Items in your cart:</h2>
             {state.cart.length ? (
-                <div>
+                <div className='container'>
                     {state.cart.map(item => (
                         <CartItem key={item._id} item={item} />
                     ))}

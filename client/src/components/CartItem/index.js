@@ -5,6 +5,7 @@ import { REMOVE_FROM_CART, UPDATE_CART_QUANTITY } from '../../utils/actions';
 import { idbPromise } from "../../utils/helpers";
 
 const CartItem = ({ item }) => {
+  console.log(item)
 
   const [, dispatch] = useStoreContext();
 
@@ -47,24 +48,30 @@ const CartItem = ({ item }) => {
   };
 
   return (
-    <div className="flex-row">
-      <div>
+    <div className='row justify-content-center border p-3'>
+      <div className='col-3'>
         <img
           src={`/images/${item.image}`}
           alt=""
           className='m-1 img-thumbnail'
         />
       </div>
-      <div>
+      <div className='col-3'>
         <div>
           <h5>{item.name}</h5> 
-          <h6>${item.price}</h6>
-          </div>
+        </div>
+      </div>
+      <div className='col-3'>
         <div>
+          <h6>${item.price}</h6>
+        </div>
+      </div>
+      <div className='col-3'>
           <span>Qty:</span>
           <input
             type="number"
             placeholder="1"
+            className='p-1'
             value={item.purchaseQuantity}
             onChange={onChange}
           />
@@ -76,7 +83,6 @@ const CartItem = ({ item }) => {
             {' '}🗑️
           </span>
         </div>
-      </div>
     </div>
   );
 }

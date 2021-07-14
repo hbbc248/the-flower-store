@@ -28,7 +28,7 @@ db.once('open', async () => {
     {
       name: 'Colors of the Rainbow',
       description:
-        'Putting a bright start in somebody’s day starts with a beautiful gift. Our delightfully vibrant bouquet is filled with a medley of blooms in cheerful pops of orange, pink and yellow, with plenty of lush greenery mixed in. It’s the perfect pick-me-up surprise, whatever the sentiment.',
+      'Putting a bright start in somebody’s day starts with a beautiful gift. Our delightfully vibrant bouquet is filled with a medley of blooms in cheerful pops of orange, pink and yellow, with plenty of lush greenery mixed in. It’s the perfect pick-me-up surprise, whatever the sentiment.',
       image: 'rainbow-colors.jpeg',
       category: [ categories[0]._id, categories[1]._id, categories[4]._id],
       price: 49.99
@@ -92,7 +92,7 @@ db.once('open', async () => {
     {
       name: 'A Touch of Blue',
       description:
-      ' Inspired by the soothing shades of a seaside retreat, our popular bouquet will bring its tranquil beauty to someone special. Artistically designed in our grey-washed wooden cube featuring soft, natural tones and textures, it’s finished with a touch of raffia to deliver your sentiments in cool, summery style.',
+      'Inspired by the soothing shades of a seaside retreat, our popular bouquet will bring its tranquil beauty to someone special. Artistically designed in our grey-washed wooden cube featuring soft, natural tones and textures, it’s finished with a touch of raffia to deliver your sentiments in cool, summery style.',
       image: 'touch-of-blue.jpeg',
       category: [categories[0]._id, categories[3]._id, categories[1]._id],
       price: 80.00
