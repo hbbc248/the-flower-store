@@ -22,15 +22,15 @@ db.once('open', async () => {
       description:
       'Cheerfull and calming bouqet filled with light pink roses and calming eucalyptus to soothe the soul. The perfect get well bouquet that speaks to the soul and the journey to better health.',
       image: 'pretty-pastel.jpeg',
-      category: [ categories[0]._id, categories[1],categories[3]._id ],
-      price: 79.99
+      category: [ categories[0]._id, categories[1]._id,categories[3]._id ],
+      price: 80.00
     },
     {
       name: 'Colors of the Rainbow',
       description:
         'Putting a bright start in somebody’s day starts with a beautiful gift. Our delightfully vibrant bouquet is filled with a medley of blooms in cheerful pops of orange, pink and yellow, with plenty of lush greenery mixed in. It’s the perfect pick-me-up surprise, whatever the sentiment.',
       image: 'rainbow-colors.jpeg',
-      category: [ categories[0]._id, categories[1], categories[4]._id],
+      category: [ categories[0]._id, categories[1]._id, categories[4]._id],
       price: 49.99
     },
     {
@@ -38,7 +38,7 @@ db.once('open', async () => {
       description:
       'A grand collection of highly colorful organically and locally grown roses. The best of the spring is right here.',
       image: 'spring.jpeg',
-      category:[ categories[0]._id, categories[1] ],
+      category:[ categories[0]._id, categories[1]._id ],
       price: 79.99
     },
     {
@@ -46,7 +46,7 @@ db.once('open', async () => {
       description:
       'Our best selling summer bouquet inspired by the shores of the California coast. Bright orange roses contrast against the beautiful blue lavender stems. The best way to show those loved ones what they mean to you.',
       image: 'summer.jpeg',
-      category: [ categories[0]._id, categories[1], categories[3]._id],
+      category: [ categories[0]._id, categories[1]._id, categories[3]._id],
       price: 44.99
     },
     {
@@ -95,7 +95,7 @@ db.once('open', async () => {
       ' Inspired by the soothing shades of a seaside retreat, our popular bouquet will bring its tranquil beauty to someone special. Artistically designed in our grey-washed wooden cube featuring soft, natural tones and textures, it’s finished with a touch of raffia to deliver your sentiments in cool, summery style.',
       image: 'touch-of-blue.jpeg',
       category: [categories[0]._id, categories[3]._id, categories[1]._id],
-      price: 79.99
+      price: 80.00
     },
     {
       name: 'Bright Colors for Brighter Days',
