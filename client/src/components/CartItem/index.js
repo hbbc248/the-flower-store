@@ -48,7 +48,7 @@ const CartItem = ({ item }) => {
   };
 
   return (
-    <div className='row justify-content-center border p-3'>
+    <div className='row justify-content-center align-items-center border p-3'>
       <div className='col-sm'>
         <img
           src={`/images/${item.image}`}

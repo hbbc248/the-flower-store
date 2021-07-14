@@ -3,7 +3,6 @@ import React, { useEffect } from "react";
 import { TOGGLE_CART, ADD_MULTIPLE_TO_CART } from "../../utils/actions";
 import { idbPromise } from "../../utils/helpers";
 import CartItem from '../CartItem';
-import Auth from '../../utils/auth';
 import './style.css';
 
 import { useStoreContext } from '../../utils/GlobalState';
@@ -63,7 +62,7 @@ const Cart = () => {
                     <div className="flex-row space-between m-1">
                         <strong>Total: ${calculateTotal()}</strong>
                         <Link to="/cart">
-                            <button className='btn ml-1'>
+                            <button className='btn ml-1' onClick={toggleCart}>
                                 Checkout
                             </button>
                         </Link>
