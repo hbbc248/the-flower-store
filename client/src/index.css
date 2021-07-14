@@ -44,14 +44,15 @@ body {
 }
 
 /* custom css */
-.img-thumbnail {
-  width: 200px;
+.img-thumbnail img {
+  width: 350px;
   height: auto;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   border: none;
 }
 
 /* end custom css */
+
 h1,
 h2,
 h3,

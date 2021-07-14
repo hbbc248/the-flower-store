@@ -60,7 +60,7 @@ const Cart = () => {
                     {state.cart.map(item => (
                         <CartItem key={item._id} item={item} />
                     ))}
-                    <div className="flex-row space-between">
+                    <div className="flex-row space-between mt-1">
                         <strong>Total: ${calculateTotal()}</strong>
                         <Link to="/cart">
                             <button>
