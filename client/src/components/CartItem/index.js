@@ -52,10 +52,14 @@ const CartItem = ({ item }) => {
         <img
           src={`/images/${item.image}`}
           alt=""
+          className='m-1 img-thumbnail'
         />
       </div>
       <div>
-        <div>{item.name}, ${item.price}</div>
+        <div>
+          <h5>{item.name}</h5> 
+          <h6>${item.price}</h6>
+          </div>
         <div>
           <span>Qty:</span>
           <input
@@ -69,7 +73,7 @@ const CartItem = ({ item }) => {
             aria-label="trash"
             onClick={() => removeFromCart(item)}
           >
-            🗑️
+            {' '}🗑️
           </span>
         </div>
       </div>

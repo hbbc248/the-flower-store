@@ -8,6 +8,7 @@
   --error: rgb(228, 46, 1);
   --spacing-one: calc(1rem * 0.5);
   --spacing-two: calc(1rem);
+  --main-font: 'Public Sans', sans-serif
 }
 
 * {
@@ -29,13 +30,21 @@ body {
   color: var(--dark);
 }
 
+/* custom css */
+.img-thumbnail {
+  width: 200px;
+  height: auto;
+  margin-bottom: 20px;
+}
+
+/* end custom css */
 h1,
 h2,
 h3,
 h4,
 h5,
 h6 {
-  font-family: 'Rubik', sans-serif;
+  font-family: var(--main-font);
   font-weight: 500;
   margin: 5px 0;
   line-height: 1.25;
@@ -82,6 +91,7 @@ a:hover {
 
 header {
   background: var(--white);
+  font-family: var(--main-font);
 }
 
 header a {
