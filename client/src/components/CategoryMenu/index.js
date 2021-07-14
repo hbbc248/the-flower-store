@@ -44,24 +44,31 @@ function CategoryMenu() {
   };
 
   return (
-    <div className="row justify-content-center">
-      <div className="col-12">
-        <h3 className="text-center">Choose an Occassion:</h3>
+    <div>
+      <div>
+        <img className="img-fluid" alt="Responsive image" src="../../images/CoverImage.png" ></img>
       </div>
-      <div className="col-12 col-lg-8 col-xl-6 row justify-content-around">
-        {categories.map(item => (
-          <button
-            className="btn btn-info m-1 rounded-lg shadow-sm"
-            key={item._id}
-            onClick={() => {
-              handleClick(item._id);
-            }}
-          >
-            {item.name}
-          </button>
-        ))}
+      <div className="row justify-content-center">
+        <div className="col-12">
+          <h3 className="text-center">Choose an Occassion:</h3>
+        </div>
+        <div className="col-12 col-lg-8 col-xl-6 row justify-content-around">
+          {categories.map(item => (
+            <button
+              className="btn btn-info m-1 rounded-lg shadow-sm"
+              key={item._id}
+              onClick={() => {
+                handleClick(item._id);
+              }}
+            >
+              {item.name}
+            </button>
+          ))}
+        </div>
       </div>
     </div>
+
+
   );
 }
 
