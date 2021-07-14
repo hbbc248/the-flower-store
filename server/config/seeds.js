@@ -22,7 +22,11 @@ db.once('open', async () => {
       description:
       'Cheerfull and calming bouqet filled with light pink roses and calming eucalyptus to soothe the soul. The perfect get well bouquet that speaks to the soul and the journey to better health.',
       image: 'pretty-pastel.jpeg',
+<<<<<<< HEAD
       category: [ categories[0]._id, categories[1]._id,categories[3]._id ],
+=======
+      category: [ categories[0]._id, categories[1]._id, categories[3]._id ],
+>>>>>>> develop
       price: 80.00
     },
     {
@@ -39,7 +43,7 @@ db.once('open', async () => {
       'A grand collection of highly colorful organically and locally grown roses. The best of the spring is right here.',
       image: 'spring.jpeg',
       category:[ categories[0]._id, categories[1]._id ],
-      price: 79.99
+      price: 80.00
     },
     {
       name: 'Summer Bouquet',

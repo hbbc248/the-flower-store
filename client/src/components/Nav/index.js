@@ -7,62 +7,65 @@ function Nav() {
   function showNavigation() {
     if (Auth.loggedIn()) {
       return (
-        <ul className="flex-row">
-          <li className="mx-1">
-            <Link to="/">
+        <div  className="navbar-nav" >
+          <div >
+            <Link className="nav-item nav-link" to="/">
               Products
             </Link>
-          </li>
-          <li className="mx-1">
-            <Link to="/orderHistory">
+          </div>
+          <div >
+            <Link className="nav-item nav-link" to="/orderHistory">
               Order History
             </Link>
-          </li>
-          <li className="mx-1">
+          </div>
+          <div className="nav-item nav-link">
             {/* this is not using the Link component to logout or user and then refresh the application to the start */}
             <a href="/" onClick={() => Auth.logout()}>
               Logout
             </a>
-          </li>
-        </ul>
+          </div>
+        </div>
       );
     } else {
       return (
-        <ul className="flex-row">
-          <li className="mx-1">
-            <Link to="/">
+        <div className="navbar-nav" >
+          <div>
+            <Link className="nav-item nav-link" to="/">
               Products
             </Link>
-          </li>
-          <li className="mx-1">
-            <Link to="/signup">
+          </div>
+          <div >
+            <Link className="nav-item nav-link" to="/signup">
               Signup
             </Link>
-          </li>
-          <li className="mx-1">
-            <Link to="/login">
+          </div>
+          <div>
+            <Link className="nav-item nav-link" to="/login">
               Login
             </Link>
-          </li>
-        </ul>
+          </div>
+        </div>
       );
     }
   }
 
   return (
-    <header className="flex-row px-1">
-      <h1>
-        <Link to="/">
-          <span role="img" aria-label="shopping bag"><img src='../../images/flowerShopLogo.png'/></span>
+    <header >
+      <nav className="navbar navbar-expand-lg navbar-light bg-light">
+      <Link className="navbar-brand"to="/">
+          <span role="img" aria-label="shopping bag">💐</span>
           The Flower Shop
         </Link>
-      </h1>
-
-      <nav>
+      <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span className="navbar-toggler-icon"></span>
+  </button>
+  <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
         {showNavigation()}
+        </div>
       </nav>
     </header>
   );
 }
 
 export default Nav;
+
