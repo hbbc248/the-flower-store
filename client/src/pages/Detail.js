@@ -81,14 +81,25 @@ function Detail() {
   }
 
   const removeFromCart = () => {
-    dispatch({
-      type: REMOVE_FROM_CART,
-      _id: currentProduct._id
-    });
-  
-    // upon removal from cart, delete the item from IndexedDB using the `currentProduct._id` to locate what to remove
-    idbPromise('cart', 'delete', { ...currentProduct });
-  };
+    const itemToRemove = cart.find((cartItem) => cartItem._id === id)
+
+    if(itemToRemove.purchaseQuantity - 1 > 0){
+      dispatch({
+        type: UPDATE_CART_QUANTITY,
+        _id: itemToRemove._id,
+        purchaseQuantity: parseInt(itemToRemove.purchaseQuantity) -1
+    })
+    //updating current item in the cart
+    idbPromise('cart', 'put', {...itemToRemove, purchaseQuantity: parseInt(itemToRemove.purchaseQuantity) - 1 })
+    } else {
+      dispatch({
+        type: REMOVE_FROM_CART,
+        _id: currentProduct._id
+      })
+      //delete the item from indexdb
+      idbPromise('cart', 'delete', { ...currentProduct })
+    }
+  }
 
   return (
     <>
