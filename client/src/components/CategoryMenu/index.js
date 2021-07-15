@@ -55,7 +55,7 @@ function CategoryMenu() {
         <div className="col-12 col-lg-8 col-xl-6 row justify-content-around">
           {categories.map(item => (
             <button
-              className="btn btn-info m-1 rounded-lg shadow-sm"
+              className="btn btn-info m-1 rounded-lg font-weight-bold shadow-sm"
               key={item._id}
               onClick={() => {
                 handleClick(item._id);
