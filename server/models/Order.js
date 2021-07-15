@@ -7,6 +7,18 @@ const orderSchema = new Schema({
     type: Date,
     default: Date.now
   },
+  shipTo: {
+    type: String,
+    required: true  
+  },
+  shipToAddress: {
+    type: String,
+    required: true
+  },
+  message: {
+    type: String,
+    maxlength: 300
+  },
   products: [
     {
       type: Schema.Types.ObjectId,

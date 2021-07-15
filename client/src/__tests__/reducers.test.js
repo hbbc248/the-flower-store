@@ -10,7 +10,9 @@ import {
     REMOVE_FROM_CART,
     UPDATE_CART_QUANTITY,
     CLEAR_CART,
-    TOGGLE_CART
+    TOGGLE_CART,
+    UPDATE_CHECKOUT_DETAILS,
+    CLEAR_CHECKOUT_DETAILS
 } from '../utils/actions';
 
 // create a sample of what our global state will look like
@@ -30,6 +32,9 @@ const initialState = {
             purchaseQuantity: 2
         }
     ],
+    shipTo: 'Carlos',
+    shipToAddress: '1234 Main St',
+    message: "I love you",
     cartOpen: false
 };
 
@@ -148,4 +153,33 @@ test('TOGGLE_CART', () => {
     });
 
     expect(newState2.cartOpen).toBe(false);
+});
+
+test('UPDATE_CHECKOUT_DETAILS', () => {
+    let newState = reducer(initialState, {
+        type: UPDATE_CHECKOUT_DETAILS,
+        shipTo: 'Victoria',
+        shipToAddress: '1111 Main St',
+        message: 'See you soon'
+    });
+
+    expect(newState.shipTo).toBe('Victoria');
+    expect(newState.shipToAddress).toBe('1111 Main St');
+    expect(newState.message).toBe('See you soon');
+    expect(initialState.shipTo).toBe('Carlos');
+    expect(initialState.shipToAddress).toBe('1234 Main St');
+    expect(initialState.message).toBe('I love you');
+});
+
+test('CLEAR_CHECKOUT_DETAILS', () => {
+    let newState = reducer(initialState, {
+        type: CLEAR_CHECKOUT_DETAILS
+    });
+
+    expect(newState.shipTo).toBe('');
+    expect(newState.shipToAddress).toBe('');
+    expect(newState.message).toBe('');
+    expect(initialState.shipTo).toBe('Carlos');
+    expect(initialState.shipToAddress).toBe('1234 Main St');
+    expect(initialState.message).toBe('I love you');
 });

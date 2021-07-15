@@ -68,7 +68,7 @@ button {
   color: black !important;
   border: none !important;
 }
-.button-nav {
+.button-category {
   width: 119px;
 }
 
@@ -76,4 +76,10 @@ button {
   color: rgb(146, 21, 21);
   font-size: 24px;
 }
+<<<<<<< HEAD
 
+=======
+.error {
+  color: rgb(146,21,21)
+}
+>>>>>>> develop
