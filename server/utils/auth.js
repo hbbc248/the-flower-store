@@ -1,5 +1,4 @@
 const jwt = require('jsonwebtoken');
-const nodemailer = require('nodemailer')
 const secret = 'mysecretsshhhhh';
 const expiration = '2h';
 

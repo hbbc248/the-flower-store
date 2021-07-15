@@ -9,7 +9,8 @@ db.once('open', async () => {
     { name: 'Anniversary' },
     { name: 'Birthday' },
     { name: 'Get well' },
-    { name: 'Just Because'}
+    { name: 'Just Because'},
+    { name: 'Extra'}
   ]);
 
   console.log('categories seeded');
@@ -120,6 +121,54 @@ db.once('open', async () => {
       image: 'yellow-spring.jpeg',
       category: [categories[0]._id, categories[4]._id, categories[2]._id],
       price: 69.99
+    },
+    {
+      name: 'Classic Teddy',
+      description: 
+      'Go that extra mile for your loved one and add a classic Teddy, something for your loved one to hold and cherish for years to come!',
+      image: 'teddy-bear.jpeg',
+      category: [categories[5]._id],
+      price: 19.99
+    },
+    {
+      name: 'Hop-Hop Bunny',
+      description: 
+      'Hop-Hop Bunny is sure to brighten anyones day and make every memory a special one.',
+      image: 'stuffed-bunny.jpeg',
+      category: [categories[5]._id],
+      price: 12.99
+    },
+    {
+      name: 'Aviator Bear',
+      description: 
+      'Take all your special memories to the sky with this special edition of our classic Teddy: Aviator bear. Let your loved one know that if this bear can do it...... so can they! 😎',
+      image: 'aviator-bear.jpeg',
+      category: [categories[5]._id],
+      price: 29.99
+    },
+    {
+      name: 'Chocolate Heart',
+      description: 
+      'Scientists claim that chocolate is the gateway to the soul. You and your loved one can share this assortment of handcrafted chocolates imported from Switzerland. Nothing will bond you together more than chocolate shaped like a heart.',
+      image: 'heart-chocolate.jpeg',
+      category: [categories[5]._id],
+      price: 29.99
+    },
+    {
+      name: 'Chocolate Extravaganza',
+      description: 
+      'Extra special occasion? Gift the ones you care about most this chocolate Extravaganza, with 45 different varieties of chocolates you can do no wrong.',
+      image: 'chocolate-extra.jpeg',
+      category: [categories[5]._id],
+      price: 59.99
+    },
+    {
+      name: 'Chocolate Covered Pretzels',
+      description: 
+      'Try our new chocolate covered pretzels, they are vegan and organically made in our own kitchen. Have no fear chocolate covered pretzels are here.',
+      image: 'pretzels.jpeg',
+      category: [categories[5]._id],
+      price: 29.99
     }
   ]);
 
