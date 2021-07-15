@@ -58,7 +58,7 @@ function Detail() {
 
   const addToCart = () => {
     const itemInCart = cart.find((cartItem) => cartItem._id === id)
-  
+
     if (itemInCart) {
       dispatch({
         type: UPDATE_CART_QUANTITY,
@@ -83,14 +83,14 @@ function Detail() {
   const removeFromCart = () => {
     const itemToRemove = cart.find((cartItem) => cartItem._id === id)
 
-    if(itemToRemove.purchaseQuantity - 1 > 0){
+    if (itemToRemove.purchaseQuantity - 1 > 0) {
       dispatch({
         type: UPDATE_CART_QUANTITY,
         _id: itemToRemove._id,
-        purchaseQuantity: parseInt(itemToRemove.purchaseQuantity) -1
-    })
-    //updating current item in the cart
-    idbPromise('cart', 'put', {...itemToRemove, purchaseQuantity: parseInt(itemToRemove.purchaseQuantity) - 1 })
+        purchaseQuantity: parseInt(itemToRemove.purchaseQuantity) - 1
+      })
+      //updating current item in the cart
+      idbPromise('cart', 'put', { ...itemToRemove, purchaseQuantity: parseInt(itemToRemove.purchaseQuantity) - 1 })
     } else {
       dispatch({
         type: REMOVE_FROM_CART,
@@ -106,24 +106,34 @@ function Detail() {
       {currentProduct ? (
         <div className="container">
           <Link to="/">← Back to Products</Link>
+          <div className="card row">
+            <div className="row">
+              <div class="col-lg-4">
+                <img
+                  className="m-1 rounded mx-auto d-block"
+                  src={`/images/${currentProduct.image}`}
+                  alt={currentProduct.name}
+                />
+              </div>
+              <div class="col-lg-8">
+                <div class="card-body">
+                  <h3 class="card-title">{currentProduct.name}</h3>
 
-          <h2>{currentProduct.name}</h2>
+                  <p className="card-text">{currentProduct.description}</p>
 
-          <p>{currentProduct.description}</p>
-
-          <p>
-            <strong>Price:</strong>${currentProduct.price}{' '}
-            <button onClick={addToCart}>Add to cart</button>
-            <button
-              disabled={!cart.find(p => p._id === currentProduct._id)} onClick={removeFromCart}>
-              Remove from Cart
-            </button>
-          </p>
-
-          <img
-            src={`/images/${currentProduct.image}`}
-            alt={currentProduct.name}
-          />
+                  <p className="card-text">
+                    <strong>Price:</strong>{" "}${currentProduct.price}{' '}
+                  </p>
+                    <button className="btn mr-2" onClick={addToCart}>Add to cart</button>
+                    <button className="btn"
+                      disabled={!cart.find(p => p._id === currentProduct._id)} onClick={removeFromCart}>
+                      Remove from Cart
+                    </button>
+                  
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       ) : null}
       {loading ? <img src={spinner} alt="loading" /> : null}
