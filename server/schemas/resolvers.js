@@ -100,10 +100,10 @@ const resolvers = {
 
       return { token, user };
     },
-    addOrder: async (parent, { products }, context) => {
+    addOrder: async (parent,{shipTo, shipToAddress, message, products}, context) => {
       console.log(context);
       if (context.user) {
-        const order = new Order({ products });
+        const order = new Order({ shipTo, shipToAddress, message, products });
 
         await User.findByIdAndUpdate(context.user._id, { $push: { orders: order } });
 
