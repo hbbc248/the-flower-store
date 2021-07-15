@@ -17,12 +17,6 @@ const stripePromise = loadStripe('pk_test_TYooMQauvdEDq54NiTphI7jx');
 const CartPage = () => {
 
     const [charCount, setCharCount] = useState(0)
-
-    function countCharacters(e) {
-        if(e.target.name === 'message'){
-            setCharCount(e.target.value.length)
-        }
-    }
     
     const [formState, setFormState] = useState({ shipTo: '', shipToAddress: '', message: '' });
 
@@ -82,6 +76,10 @@ const CartPage = () => {
     }, [data]);
 
     const handleChange = (event) => {
+
+        if(event.target.name === 'message'){
+            setCharCount(event.target.value.length)
+        }
         const { name, value } = event.target;
         setFormState({
             ...formState,
@@ -136,7 +134,7 @@ const CartPage = () => {
                                 className="form-control" 
                                 placeholder="Enter message" 
                                 id="message" 
-                                onChange={countCharacters}/>
+                                onChange={handleChange}/>
                                 <p className={`${charCount >= 300 ? 'error' : ''}`}>Characters left:{' '}{ 300 - charCount}</p>
                             </div>
                         </div>
