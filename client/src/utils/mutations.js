@@ -12,11 +12,11 @@ export const LOGIN = gql`
 `;
 
 export const ADD_ORDER = gql`
-  mutation addOrder($shipTo: String!, $shipToAddress: String! $message: String $products: [ID]!) {
-    addOrder(shipTo: $ShipTo, shipToAddress: $shipToAddress, message: $message, products: $products) {
+  mutation addOrder($shipTo: String!, $shipToAddress: String!, $message: String, $products: [ID]!) {
+    addOrder(shipTo: $shipTo, shipToAddress: $shipToAddress, message: $message, products: $products) {
       purchaseDate
       shipTo
-      ShipToAddress
+      shipToAddress
       message
       products {
         _id
