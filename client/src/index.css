@@ -14,6 +14,7 @@
   /* link on product cards */
   --tertiary: #6B6D76;
 
+  /* cart background color*/
   --light: #fafafa;
 
   /* input border and body text color */
@@ -66,4 +67,7 @@ button {
   font-weight: bold;
   color: black !important;
   border: none !important;
+}
+.button-nav {
+  width: 119px;
 }
