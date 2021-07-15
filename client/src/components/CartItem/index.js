@@ -10,21 +10,21 @@ const CartItem = ({ item }) => {
   const [, dispatch] = useStoreContext();
 
   const removeFromCart = item => {
-    if(item.purchaseQuantity - 1 > 0){
-        dispatch({
-            type: UPDATE_CART_QUANTITY,
-            _id: item._id,
-            purchaseQuantity: parseInt(item.purchaseQuantity) - 1
-        })
-        idbPromise('cart','put', { ...item, purchaseQuantity: parseInt(item.purchaseQuantity) - 1 })
+    if (item.purchaseQuantity - 1 > 0) {
+      dispatch({
+        type: UPDATE_CART_QUANTITY,
+        _id: item._id,
+        purchaseQuantity: parseInt(item.purchaseQuantity) - 1
+      })
+      idbPromise('cart', 'put', { ...item, purchaseQuantity: parseInt(item.purchaseQuantity) - 1 })
     } else {
-        dispatch({
-            type: REMOVE_FROM_CART,
-            _id: item._id
-        })
-        idbPromise('cart','delete', {...item})
+      dispatch({
+        type: REMOVE_FROM_CART,
+        _id: item._id
+      })
+      idbPromise('cart', 'delete', { ...item })
     }
-};
+  };
 
   const onChange = (e) => {
     const value = e.target.value;
@@ -58,7 +58,7 @@ const CartItem = ({ item }) => {
       </div>
       <div className='col-md'>
         <div>
-          <h5>{item.name}</h5> 
+          <h5>{item.name}</h5>
         </div>
       </div>
       <div className='col-md'>
@@ -67,14 +67,18 @@ const CartItem = ({ item }) => {
         </div>
       </div>
       <div className='col-md'>
-          <span>Qty:{' '}</span>
+        <div className="row align-items-center">
+          <div classNmae="col-md">
+            <h6>Qty:{''}</h6>
+          </div>
+
           <input
             type="number"
             placeholder="1"
-            className='p-1 '
+            className='form-control p-1 mx-1'
             value={item.purchaseQuantity}
             onChange={onChange}
-            style={{width: '25px'}}
+            style={{ width: '45px' }}
           />
           <span
             role="img"
@@ -83,7 +87,11 @@ const CartItem = ({ item }) => {
           >
             {' '}🗑️
           </span>
+
+
         </div>
+
+      </div>
     </div>
   );
 }

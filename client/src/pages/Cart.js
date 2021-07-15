@@ -127,7 +127,7 @@ const CartPage = () => {
 
                 </div>
             ) : (
-                <h3>
+                <h3 className="text-center">
                     Your cart is empty!
                 </h3>
             )}
