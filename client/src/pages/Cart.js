@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { TOGGLE_CART, ADD_MULTIPLE_TO_CART } from "../utils/actions";
 import { idbPromise } from "../utils/helpers";
 import CartItem from '../components/CartItem';
@@ -15,7 +15,15 @@ import { useLazyQuery } from '@apollo/client';
 const stripePromise = loadStripe('pk_test_TYooMQauvdEDq54NiTphI7jx');
 
 const CartPage = () => {
+    const [charCount, setCharCount] = useState(0)
 
+    function characterCount(e){
+        if(e.target.name === 'message'){
+            setCharCount(e.target.value.length)
+            console.log(charCount)
+        }
+    }
+    
     const [state, dispatch] = useStoreContext();
 
     const [getCheckout, { data }] = useLazyQuery(QUERY_CHECKOUT);
@@ -84,18 +92,20 @@ const CartPage = () => {
                     <form className="my-3">
                         <div className="form-row">
                             <div className="form-group col-md-6">
-                                <label for="ShipTo">Shipping to:</label>
+                                <label htmlFor="ShipTo">Shipping to:</label>
                                 <input type="name" className="form-control" placeholder="Please enter full name" id="shipTo" />
                             </div>
                             <div className="form-group col-md-6">
-                                <label for="ShipTo">Shipping Address:</label>
+                                <label htmlFor="ShipTo">Shipping Address:</label>
                                 <input type="address" className="form-control" placeholder="Please enter full address" id="address" />
                             </div>
                         </div>
                         <div className="form-row">
                             <div className="form-group col-md-12">
-                                <label for="ShipTo">Message (Optional):</label>
-                                <input type="message" className="form-control" placeholder="Enter message" id="message" />
+                                <label htmlFor="ShipTo">Message (Optional):</label>
+                                <textarea name="message" type="message" className="form-control" placeholder="Enter message" id="message" rows='5' onChange={characterCount}/>
+                                <p className={`fw-light fs-6 ${charCount >= 300 ? 'error' : ''}`}>Characters left: {300 - charCount}</p>
+
                             </div>
                         </div>
 

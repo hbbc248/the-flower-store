@@ -5,7 +5,6 @@ import { REMOVE_FROM_CART, UPDATE_CART_QUANTITY } from '../../utils/actions';
 import { idbPromise } from "../../utils/helpers";
 
 const CartItem = ({ item }) => {
-  console.log(item)
 
   const [, dispatch] = useStoreContext();
 
@@ -74,7 +73,7 @@ const CartItem = ({ item }) => {
             className='p-1 '
             value={item.purchaseQuantity}
             onChange={onChange}
-            style={{width: '25px'}}
+            style={{width: '48px'}}
           />
           <span
             role="img"

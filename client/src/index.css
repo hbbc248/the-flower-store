@@ -76,3 +76,6 @@ button {
   color: rgb(146, 21, 21);
   font-size: 24px;
 }
+.error {
+  color: rgb(146, 21, 21);
+}
