@@ -23,6 +23,8 @@ const CartPage = () => {
             setCharCount(e.target.value.length)
         }
     }
+    
+    const [formState, setFormState] = useState({ shipTo: '', shipToAddress: '', message: '' });
 
     const [state, dispatch] = useStoreContext();
 
@@ -48,6 +50,11 @@ const CartPage = () => {
                 productIds.push(item._id);
             }
         });
+        
+        // save checkout details into indexedDB
+        // clear first
+        idbPromise('checkout', 'clear', {});
+        idbPromise('checkout', 'add', {...formState});
 
         getCheckout({
             variables: { products: productIds }
@@ -74,6 +81,13 @@ const CartPage = () => {
         }
     }, [data]);
 
+    const handleChange = (event) => {
+        const { name, value } = event.target;
+        setFormState({
+            ...formState,
+            [name]: value,
+        });
+    };
 
     return (
         <div className="m-3">
@@ -92,23 +106,40 @@ const CartPage = () => {
                     <form className="my-3">
                         <div className="form-row">
                             <div className="form-group col-md-6">
-                                <label for="ShipTo">Shipping to:</label>
-                                <input type="name" className="form-control" placeholder="Please enter full name" id="shipTo" />
+                                <label htmlFor="ShipTo">Shipping to:</label>
+                                <input type="name"
+                                    name="shipTo"
+                                    className="form-control"
+                                    placeholder="Please enter full name"
+                                    id="shipTo"
+                                    onChange={handleChange}
+                                />
                             </div>
                             <div className="form-group col-md-6">
-                                <label for="ShipTo">Shipping Address:</label>
-                                <input type="address" className="form-control" placeholder="Please enter full address" id="address" />
+                                <label htmlFor="ShipToAddress">Shipping Address:</label>
+                                <input type="address"
+                                    name="shipToAddress"
+                                    className="form-control"
+                                    placeholder="Please enter full address"
+                                    id="address"
+                                    onChange={handleChange}
+                                />
                             </div>
                         </div>
                         <div className="form-row">
                             <div className="form-group col-md-12">
                                 <label for="ShipTo">Message (Optional):</label>
-                                <textarea name='message' rows='5' type="message" className="form-control" placeholder="Enter message" id="message" onChange={countCharacters}/>
+                                <textarea
+                                type="message"
+                                name='message' 
+                                rows='5' 
+                                className="form-control" 
+                                placeholder="Enter message" 
+                                id="message" 
+                                onChange={countCharacters}/>
                                 <p className={`${charCount >= 300 ? 'error' : ''}`}>Characters left:{' '}{ 300 - charCount}</p>
-
                             </div>
                         </div>
-
                     </form>
                     <div className="text-center mb-2">
                         {
@@ -122,19 +153,8 @@ const CartPage = () => {
                                         Login to Pay
                                     </button>
                                 </Link>
-
                         }
                     </div>
-
-
-
-
-
-
-
-
-
-
                 </div>
             ) : (
                 <h3 className="text-center">
