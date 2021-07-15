@@ -1,7 +1,20 @@
 import React from "react";
+import { useStoreContext } from "../../utils/GlobalState";
+import { UPDATE_CURRENT_CATEGORY } from "../../utils/actions";
+
 
 function Footer () {
- 
+  const [state, dispatch] = useStoreContext();
+  console.log(state.categories)
+  const { categories } = state
+
+  const handleClick = id => {
+    dispatch({
+      type: UPDATE_CURRENT_CATEGORY,
+      currentCategory: id
+    });
+  };
+
 return (
 
     <footer className="text-center text-lg-start bg-light text-muted">
@@ -14,31 +27,23 @@ return (
             <div className="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
              
               <h6 className="text-uppercase fw-bold mb-4">
-                <i className="fas fa-gem me-3"></i>Company name
+                <i className="fas fa-gem me-3"></i>The Flower Shop
               </h6>
               <p>
-                Here you can use rows and columns to organize your footer content. Lorem ipsum
-                dolor sit amet, consectetur adipisicing elit.
+                
               </p>
             </div>
 
             <div className="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
      
               <h6 className="text-uppercase fw-bold mb-4">
-                Products
+                Categories
               </h6>
+              {state.categories.map(category => (
               <p>
-                <a href="#!" className="text-reset">Angular</a>
+                  <a className="text-reset" onClick={() => handleClick(category._id)}>{category.name}</a>
               </p>
-              <p>
-                <a href="#!" className="text-reset">React</a>
-              </p>
-              <p>
-                <a href="#!" className="text-reset">Vue</a>
-              </p>
-              <p>
-                <a href="#!" className="text-reset">Laravel</a>
-              </p>
+              ))}
             </div>
 
             <div className="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
@@ -80,8 +85,11 @@ return (
       </section>
 
       <div className="text-center p-4">
-        © 2021 Copyright:
-        <a className="text-reset fw-bold" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+        © 2021 Created by:<br/>
+        <a className="text-reset fw-bold" href="https://github.com/pilarbuchen">Pilar Buchen</a>{' '}|{' '}
+        <a className="text-reset fw-bold" href="https://github.com/balloonicorn92">Fernanda Frers</a>{' '}|{' '}
+        <a className="text-reset fw-bold" href="https://github.com/lacey-griffith">Lacey Griffith</a>{' '}|{' '}
+        <a className="text-reset fw-bold" href="https://github.com/hbbc248">Ibrahim Zerlin</a>
       </div>
   
     </footer>
