@@ -47,16 +47,16 @@ return (
                 Useful links
               </h6>
               <p>
-                <a href="#!" className="text-reset">Pricing</a>
+                <a href="/" className="text-reset">Shop</a>
               </p>
               <p>
-                <a href="#!" className="text-reset">Settings</a>
+                <a href="/login" className="text-reset">Login</a>
               </p>
               <p>
-                <a href="#!" className="text-reset">Orders</a>
+                <a href="/cart" className="text-reset">Cart</a>
               </p>
               <p>
-                <a href="#!" className="text-reset">Help</a>
+                <a href="/contact" className="text-reset">Contact</a>
               </p>
             </div>
       
