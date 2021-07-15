@@ -56,11 +56,7 @@ function OrderHistory() {
           
         ) : null}
       </div>
-<<<<<<< HEAD
       <Cart/>
-=======
-      
->>>>>>> develop
     </>
   );
 }
