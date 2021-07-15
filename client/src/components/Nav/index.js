@@ -53,7 +53,7 @@ function Nav() {
   <header>
     <div className='text-center'>
       <Link className="navbar-brand" to="/">
-        <img src='../../images/flowerShopLogo.png'/>
+        <img alt='flower shop logo' src='../../images/flowerShopLogo.png'/>
       </Link>
     </div>
     <nav className="navbar navbar-expand-lg justify-content-center">

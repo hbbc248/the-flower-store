@@ -46,7 +46,7 @@ function CategoryMenu() {
   return (
     <div>
       <div>
-        <img className="img-fluid" alt="Responsive image" src="../../images/CoverImage.png" ></img>
+        <img className="img-fluid" alt="close up of flower bouqet" src="../../images/CoverImage.png" ></img>
       </div>
       <div className="row justify-content-center">
         <div className="col-12">
