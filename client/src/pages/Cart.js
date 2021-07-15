@@ -17,7 +17,9 @@ const stripePromise = loadStripe('pk_test_TYooMQauvdEDq54NiTphI7jx');
 const CartPage = () => {
 
     const [charCount, setCharCount] = useState(0)
-    
+
+    const [inputMessage, setMessage] = useState('')
+
     const [formState, setFormState] = useState({ shipTo: '', shipToAddress: '', message: '' });
 
     const [state, dispatch] = useStoreContext();
@@ -44,11 +46,12 @@ const CartPage = () => {
                 productIds.push(item._id);
             }
         });
-        
+
+
         // save checkout details into indexedDB
         // clear first
         idbPromise('checkout', 'clear', {});
-        idbPromise('checkout', 'add', {...formState});
+        idbPromise('checkout', 'add', { ...formState });
 
         getCheckout({
             variables: { products: productIds }
@@ -76,15 +79,17 @@ const CartPage = () => {
     }, [data]);
 
     const handleChange = (event) => {
-
-        if(event.target.name === 'message'){
-            setCharCount(event.target.value.length)
-        }
         const { name, value } = event.target;
+        if ((name === 'message') && (value.length <= 300)) {
+            setCharCount(event.target.value.length)
+            setMessage(value)
+        }
         setFormState({
             ...formState,
             [name]: value,
         });
+        console.log(formState);
+
     };
 
     return (
@@ -126,16 +131,18 @@ const CartPage = () => {
                         </div>
                         <div className="form-row">
                             <div className="form-group col-md-12">
-                                <label for="ShipTo">Message (Optional):</label>
+                                <label htmlFor="ShipTo">Message (Optional):</label>
                                 <textarea
-                                type="message"
-                                name='message' 
-                                rows='5' 
-                                className="form-control" 
-                                placeholder="Enter message" 
-                                id="message" 
-                                onChange={handleChange}/>
-                                <p className={`${charCount >= 300 ? 'error' : ''}`}>Characters left:{' '}{ 300 - charCount}</p>
+                                    //type="message"
+                                    placeholder="Enter message"
+                                    value={inputMessage}
+                                    name='message'
+                                    rows='5'
+                                    className="form-control"
+                                    id="message"
+                                    onChange={handleChange}
+                                />
+                                <p className={`${charCount >= 300 ? 'error' : ''}`}>Characters left:{' '}{300 - charCount}</p>
                             </div>
                         </div>
                     </form>
