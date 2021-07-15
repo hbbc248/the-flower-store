@@ -87,7 +87,7 @@ const resolvers = {
         line_items,
         mode: 'payment',
         success_url: `${url}/success?session_id={CHECKOUT_SESSION_ID}`,
-        cancel_url: `${url}/`
+        cancel_url: `${url}/cart`
       });
 
       return { session: session.id };
@@ -100,11 +100,11 @@ const resolvers = {
 
       return { token, user };
     },
-    addOrder: async (parent, { products }, context) => {
+    addOrder: async (parent, args , context) => {
       console.log(context);
       if (context.user) {
-        const order = new Order({ products });
-
+        const order = new Order(args);
+        
         await User.findByIdAndUpdate(context.user._id, { $push: { orders: order } });
 
         return order;

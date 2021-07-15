@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { TOGGLE_CART, ADD_MULTIPLE_TO_CART } from "../utils/actions";
 import { idbPromise } from "../utils/helpers";
 import CartItem from '../components/CartItem';
@@ -15,6 +15,12 @@ import { useLazyQuery } from '@apollo/client';
 const stripePromise = loadStripe('pk_test_TYooMQauvdEDq54NiTphI7jx');
 
 const CartPage = () => {
+
+    const [charCount, setCharCount] = useState(0)
+
+    const [inputMessage, setMessage] = useState('')
+
+    const [formState, setFormState] = useState({ shipTo: '', shipToAddress: '', message: '' });
 
     const [state, dispatch] = useStoreContext();
 
@@ -41,6 +47,12 @@ const CartPage = () => {
             }
         });
 
+
+        // save checkout details into indexedDB
+        // clear first
+        idbPromise('checkout', 'clear', {});
+        idbPromise('checkout', 'add', { ...formState });
+
         getCheckout({
             variables: { products: productIds }
         });
@@ -66,6 +78,19 @@ const CartPage = () => {
         }
     }, [data]);
 
+    const handleChange = (event) => {
+        const { name, value } = event.target;
+        if ((name === 'message') && (value.length <= 300)) {
+            setCharCount(event.target.value.length)
+            setMessage(value)
+        }
+        setFormState({
+            ...formState,
+            [name]: value,
+        });
+        console.log(formState);
+
+    };
 
     return (
         <div className="m-3">
@@ -84,21 +109,42 @@ const CartPage = () => {
                     <form className="my-3">
                         <div className="form-row">
                             <div className="form-group col-md-6">
-                                <label for="ShipTo">Shipping to:</label>
-                                <input type="name" className="form-control" placeholder="Please enter full name" id="shipTo" />
+                                <label htmlFor="ShipTo">Shipping to:</label>
+                                <input type="name"
+                                    name="shipTo"
+                                    className="form-control"
+                                    placeholder="Please enter full name"
+                                    id="shipTo"
+                                    onChange={handleChange}
+                                />
                             </div>
                             <div className="form-group col-md-6">
-                                <label for="ShipTo">Shipping Address:</label>
-                                <input type="address" className="form-control" placeholder="Please enter full address" id="address" />
+                                <label htmlFor="ShipToAddress">Shipping Address:</label>
+                                <input type="address"
+                                    name="shipToAddress"
+                                    className="form-control"
+                                    placeholder="Please enter full address"
+                                    id="address"
+                                    onChange={handleChange}
+                                />
                             </div>
                         </div>
                         <div className="form-row">
                             <div className="form-group col-md-12">
-                                <label for="ShipTo">Message (Optional):</label>
-                                <input type="message" className="form-control" placeholder="Enter message" id="message" />
+                                <label htmlFor="ShipTo">Message (Optional):</label>
+                                <textarea
+                                    //type="message"
+                                    placeholder="Enter message"
+                                    value={inputMessage}
+                                    name='message'
+                                    rows='5'
+                                    className="form-control"
+                                    id="message"
+                                    onChange={handleChange}
+                                />
+                                <p className={`${charCount >= 300 ? 'error' : ''}`}>Characters left:{' '}{300 - charCount}</p>
                             </div>
                         </div>
-
                     </form>
                     <div className="text-center mb-2">
                         {
@@ -112,22 +158,11 @@ const CartPage = () => {
                                         Login to Pay
                                     </button>
                                 </Link>
-
                         }
                     </div>
-
-
-
-
-
-
-
-
-
-
                 </div>
             ) : (
-                <h3>
+                <h3 className="text-center">
                     Your cart is empty!
                 </h3>
             )}

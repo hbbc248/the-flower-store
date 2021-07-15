@@ -9,7 +9,9 @@ import {
     REMOVE_FROM_CART,
     UPDATE_CART_QUANTITY,
     CLEAR_CART,
-    TOGGLE_CART
+    TOGGLE_CART,
+    UPDATE_CHECKOUT_DETAILS,
+    CLEAR_CHECKOUT_DETAILS
 } from './actions';
 
 
@@ -82,7 +84,20 @@ export const reducer = (state, action) => {
                 ...state,
                 cartOpen: !state.cartOpen
             };
-
+        case UPDATE_CHECKOUT_DETAILS:
+            return {
+                ...state,
+                shipTo: action.shipTo,
+                shipToAddress: action.shipToAddress,
+                message: action.message
+            };
+        case CLEAR_CHECKOUT_DETAILS:
+            return {
+                ...state,
+                shipTo: '',
+                shipToAddress: '',
+                message: ''
+            };
         default:
             return state;
     }
