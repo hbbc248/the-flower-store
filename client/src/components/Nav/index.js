@@ -28,7 +28,7 @@ function Nav() {
       );
     } else {
       return (
-        <div className="navbar-nav" >
+        <div className="navbar-nav text-center" >
           <div>
             <Link className="nav-item nav-link" to="/">
               Products
@@ -56,7 +56,7 @@ function Nav() {
         <img src='../../images/flowerShopLogo.png'/>
       </Link>
     </div>
-    <nav className="navbar navbar-expand-lg">
+    <nav className="navbar navbar-expand-lg justify-content-center">
       <button className="navbar-toggler navbar-light" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span className="navbar-toggler-icon"></span>
       </button>

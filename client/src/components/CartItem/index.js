@@ -67,14 +67,14 @@ const CartItem = ({ item }) => {
         </div>
       </div>
       <div className='col-md'>
-          <span>Qty:</span>
+          <span>Qty:{' '}</span>
           <input
             type="number"
             placeholder="1"
-            className='p-1 form-control'
+            className='p-1 '
             value={item.purchaseQuantity}
             onChange={onChange}
-            // style={{width '18em'}}
+            style={{width: '25px'}}
           />
           <span
             role="img"
