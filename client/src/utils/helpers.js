@@ -21,6 +21,7 @@ export function idbPromise(storeName, method, object) {
       db.createObjectStore('products', { keyPath: '_id' });
       db.createObjectStore('categories', { keyPath: '_id' });
       db.createObjectStore('cart', { keyPath: '_id' });
+      db.createObjectStore('checkout', { keyPath: 'shipTo' } );
     };
 
     // handle any errors with connecting
@@ -43,6 +44,14 @@ export function idbPromise(storeName, method, object) {
       };
 
       switch (method) {
+        case 'add':
+          store.add(object);
+          resolve(object);
+          break;
+        case 'clear':
+          store.clear()
+          resolve(object);
+          break;
         case 'put':
           store.put(object);
           resolve(object);
