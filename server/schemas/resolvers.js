@@ -81,7 +81,6 @@ const resolvers = {
           quantity: 1
         });
 
-        nodemailerMiddleware(args)
       }
 
       const session = await stripe.checkout.sessions.create({

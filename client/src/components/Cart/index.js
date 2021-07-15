@@ -3,7 +3,6 @@ import React, { useEffect } from "react";
 import { TOGGLE_CART, ADD_MULTIPLE_TO_CART } from "../../utils/actions";
 import { idbPromise } from "../../utils/helpers";
 import CartItem from '../CartItem';
-import Auth from '../../utils/auth';
 import './style.css';
 
 import { useStoreContext } from '../../utils/GlobalState';
@@ -56,14 +55,14 @@ const Cart = () => {
             <div className="close" onClick={toggleCart}>Close</div>
             <h2>Flower Cart</h2>
             {state.cart.length ? (
-                <div>
+                <div className='container'>
                     {state.cart.map(item => (
                         <CartItem key={item._id} item={item} />
                     ))}
-                    <div className="flex-row space-between">
+                    <div className="flex-row space-between m-1">
                         <strong>Total: ${calculateTotal()}</strong>
                         <Link to="/cart">
-                            <button>
+                            <button className='btn ml-1' onClick={toggleCart}>
                                 Checkout
                             </button>
                         </Link>
@@ -71,10 +70,7 @@ const Cart = () => {
                 </div>
             ) : (
                 <h3>
-                    <span role="img" aria-label="shocked">
-                        😱
-                    </span>
-                    No items have been added to the cart!
+                    Your cart is empty!
                 </h3>
             )}
         </div>

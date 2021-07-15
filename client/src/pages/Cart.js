@@ -4,6 +4,7 @@ import { idbPromise } from "../utils/helpers";
 import CartItem from '../components/CartItem';
 import Auth from '../utils/auth';
 import '../components/Cart/style.css';
+import { Link } from "react-router-dom";
 
 import { useStoreContext } from '../utils/GlobalState';
 
@@ -67,31 +68,67 @@ const CartPage = () => {
 
 
     return (
-        <div className="">
-            <h2>Shopping Cart</h2>
+        <div className="m-3">
+            <div className="text-center">
+                <h2 className='mb-3'>Items in your cart:</h2>
+            </div>
             {state.cart.length ? (
-                <div>
+                <div className='container'>
                     {state.cart.map(item => (
                         <CartItem key={item._id} item={item} />
                     ))}
-                    <div className="flex-row space-between">
-                        <strong>Total: ${calculateTotal()}</strong>
+
+                    <div className="text-right mr-md-4">
+                        <h2>Total: ${calculateTotal()}</h2>
+                    </div>
+                    <form className="my-3">
+                        <div className="form-row">
+                            <div className="form-group col-md-6">
+                                <label for="ShipTo">Shipping to:</label>
+                                <input type="name" className="form-control" placeholder="Please enter full name" id="shipTo" />
+                            </div>
+                            <div className="form-group col-md-6">
+                                <label for="ShipTo">Shipping Address:</label>
+                                <input type="address" className="form-control" placeholder="Please enter full address" id="address" />
+                            </div>
+                        </div>
+                        <div className="form-row">
+                            <div className="form-group col-md-12">
+                                <label for="ShipTo">Message (Optional):</label>
+                                <input type="message" className="form-control" placeholder="Enter message" id="message" />
+                            </div>
+                        </div>
+
+                    </form>
+                    <div className="text-center mb-2">
                         {
                             Auth.loggedIn() ?
-                                <button onClick={submitCheckout}>
-                                    Checkout
+                                <button className="btn" onClick={submitCheckout}>
+                                    Pay
                                 </button>
                                 :
-                                <span>(log in to check out)</span>
+                                <Link to="/login">
+                                    <button className="btn">
+                                        Login to Pay
+                                    </button>
+                                </Link>
+
                         }
                     </div>
+
+
+
+
+
+
+
+
+
+
                 </div>
             ) : (
                 <h3>
-                    <span role="img" aria-label="shocked">
-                        😱
-                    </span>
-                    You haven't added anything to your cart yet!
+                    Your cart is empty!
                 </h3>
             )}
         </div>
