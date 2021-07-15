@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { TOGGLE_CART, ADD_MULTIPLE_TO_CART } from "../utils/actions";
 import { idbPromise } from "../utils/helpers";
 import CartItem from '../components/CartItem';
@@ -15,6 +15,14 @@ import { useLazyQuery } from '@apollo/client';
 const stripePromise = loadStripe('pk_test_TYooMQauvdEDq54NiTphI7jx');
 
 const CartPage = () => {
+
+    const [charCount, setCharCount] = useState(0)
+
+    function countCharacters(e) {
+        if(e.target.name === 'message'){
+            setCharCount(e.target.value.length)
+        }
+    }
 
     const [state, dispatch] = useStoreContext();
 
@@ -95,7 +103,9 @@ const CartPage = () => {
                         <div className="form-row">
                             <div className="form-group col-md-12">
                                 <label for="ShipTo">Message (Optional):</label>
-                                <input type="message" className="form-control" placeholder="Enter message" id="message" />
+                                <textarea name='message' rows='5' type="message" className="form-control" placeholder="Enter message" id="message" onChange={countCharacters}/>
+                                <p className={`${charCount >= 300 ? 'error' : ''}`}>Characters left:{' '}{ 300 - charCount}</p>
+
                             </div>
                         </div>
 
