@@ -71,3 +71,8 @@ button {
 .button-nav {
   width: 119px;
 }
+
+.error-text {
+  color: rgb(146, 21, 21);
+  font-size: 24px;
+}
