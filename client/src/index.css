@@ -94,3 +94,6 @@ img {
   border-style: hidden;
 }
 
+.non-wrap {
+  flex-wrap: nowrap;
+}
