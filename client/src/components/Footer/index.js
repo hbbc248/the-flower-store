@@ -73,7 +73,7 @@ return (
               <p><i className="fas fa-home me-3"></i> New York, NY 10012, US</p>
               <p>
                 <i className="fas fa-envelope me-3"></i>
-                info@example.com
+                theflowershop@example.com
               </p>
               <p><i className="fas fa-phone me-3"></i> + 01 234 567 88</p>
               <p><i className="fas fa-print me-3"></i> + 01 234 567 89</p>
