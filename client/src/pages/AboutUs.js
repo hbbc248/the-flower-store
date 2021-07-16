@@ -19,10 +19,19 @@ function AboutUs() {
                         <div className="col-12">
                             <h3 className="text-center mb-2">Florist of the Month:</h3>
                         </div>
+                        <div class="card img-container">
+                            <img class="card-img-top image" src="../../images/florist1.png" alt="Card image cap"></img>
+                            <div class="card-body">
+                                <h5> Meet Susan:</h5>
+                                <p class="card-text"> Susan has been employee of the month for the last 36 months straight.
+                                <br></br>She is our most dedicated florist, always showing her enthusiasm and passion for bouquets 
+                                <br></br>She does not slow down, come by the shop to see her at work!</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <Cart/>
+            <Cart />
         </div>
 
     )

@@ -79,3 +79,18 @@ button {
 .error {
   color: rgb(146,21,21)
 }
+
+.img-container,
+img {
+  width: 20rem;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
+.img-container {
+  margin-top: 10px;
+  border-style: hidden;
+}
+
