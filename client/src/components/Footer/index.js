@@ -1,12 +1,26 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useStoreContext } from "../../utils/GlobalState";
-import { UPDATE_CURRENT_CATEGORY } from "../../utils/actions";
-
+import { UPDATE_CURRENT_CATEGORY, UPDATE_CATEGORIES } from "../../utils/actions";
+import { QUERY_CATEGORIES } from '../../utils/queries';
+import { useQuery } from '@apollo/client';
 
 function Footer () {
   const [state, dispatch] = useStoreContext();
-  console.log(state.categories)
+
   const { categories } = state
+  console.log(categories)
+
+  const { loading, data } = useQuery(QUERY_CATEGORIES);
+  console.log(data)
+
+  useEffect(() => {
+    if (data) {
+      dispatch({
+        type: UPDATE_CATEGORIES,
+        categories: data.categories
+      })
+    }
+  }, [data, loading, dispatch])
 
   const handleClick = id => {
     dispatch({
@@ -27,11 +41,11 @@ return (
             <div className="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
              
               <h6 className="text-uppercase fw-bold mb-4">
-                <i className="fas fa-gem me-3"></i>The Flower shop
+                The Flower shop
               </h6>
-              <p>
-                
-              </p>
+              <div>
+                <img className='card-img-top' src="../../images/flowerShopTransparentBg.png"/>
+              </div>
             </div>
 
             <div className="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
@@ -39,9 +53,9 @@ return (
               <h6 className="text-uppercase fw-bold mb-4">
                 Categories
               </h6>
-              {state.categories.map(category => (
-              <p>
-                  <a className="text-reset" onClick={() => handleClick(category._id)}>{category.name}</a>
+              {categories.map(category => (
+              <p key={category.name}>
+                  <a className="text-reset" key={category._id} onClick={() => handleClick(category._id)}>{category.name}</a>
               </p>
               ))}
             </div>
@@ -70,13 +84,19 @@ return (
               <h6 className="text-uppercase fw-bold mb-4">
                 Contact
               </h6>
-              <p><i className="fas fa-home me-3"></i> New York, NY 10012, US</p>
+              <p>Austin, Tx</p>
               <p>
-                <i className="fas fa-envelope me-3"></i>
-                theflowershop@example.com
+                flowershop@example.com
               </p>
-              <p><i className="fas fa-phone me-3"></i> + 01 234 567 88</p>
-              <p><i className="fas fa-print me-3"></i> + 01 234 567 89</p>
+              <p> 1 (234)-567-8900</p>
+              <p>
+                <i class="fab fa-facebook-square"></i>{' '}
+              <i class="fab fa-instagram"></i>{' '}
+              <i class="fab fa-twitter"></i>{' '}
+              <i class="fab fa-google"></i>{' '}
+                <br/>
+              <i class="fab fa-stripe"></i>
+              </p>
             </div>
 
           </div>
