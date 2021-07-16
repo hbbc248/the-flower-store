@@ -8,10 +8,8 @@ function Footer () {
   const [state, dispatch] = useStoreContext();
 
   const { categories } = state
-  console.log(categories)
 
   const { loading, data } = useQuery(QUERY_CATEGORIES);
-  console.log(data)
 
   useEffect(() => {
     if (data) {
@@ -44,7 +42,7 @@ return (
                 The Flower shop
               </h6>
               <div>
-                <img className='card-img-top' src="../../images/flowerShopTransparentBg.png"/>
+                <img className='card-img-top' alt='flowershop logo' src="../../images/flowerShopTransparentBg.png"/>
               </div>
             </div>
 
@@ -90,12 +88,12 @@ return (
               </p>
               <p> 1 (234)-567-8900</p>
               <p>
-                <i class="fab fa-facebook-square"></i>{' '}
-              <i class="fab fa-instagram"></i>{' '}
-              <i class="fab fa-twitter"></i>{' '}
-              <i class="fab fa-google"></i>{' '}
+                <i className="fab fa-facebook-square" alt='facebook logo'></i>{' '}
+              <i className="fab fa-instagram" alt='instagram logo'></i>{' '}
+              <i className="fab fa-twitter" alt='twitter logo'></i>{' '}
+              <i className="fab fa-google" alt='google logo'></i>{' '}
                 <br/>
-              <i class="fab fa-stripe"></i>
+              <i className="fab fa-stripe" alt='stripe logo'></i>
               </p>
             </div>
 
