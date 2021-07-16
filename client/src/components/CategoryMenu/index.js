@@ -52,7 +52,7 @@ function CategoryMenu() {
         <div className="col-12">
           <h3 className="text-center">Choose an Occassion:</h3>
         </div>
-        <div className="col-12 col-lg-8 col-xl-6 row justify-content-around">
+        <div className="col-12 col-lg-8 col-xl-6 row justify-content-center">
           {categories.map(item => (
             <button
               className="button-category btn btn-info m-1 rounded-lg font-weight-bold shadow-sm"
