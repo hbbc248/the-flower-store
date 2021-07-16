@@ -67,7 +67,7 @@ const CartItem = ({ item }) => {
       </div>
       <div className='col-md col-sm col-lg'>
         <div className="row align-items-center non-wrap">
-          <h6>Qty:{''}</h6>
+            <h6>Qty:{''}</h6>
           <input
             type="number"
             placeholder="1"
