@@ -65,12 +65,9 @@ const CartItem = ({ item }) => {
           <h6>${item.price}</h6>
         </div>
       </div>
-      <div className='col-md'>
-        <div className="row align-items-center">
-          <div className="col-md">
-            <h6>Qty:{''}</h6>
-          </div>
-
+      <div className='col-md col-sm col-lg'>
+        <div className="row align-items-center non-wrap">
+          <h6>Qty:{''}</h6>
           <input
             type="number"
             placeholder="1"
