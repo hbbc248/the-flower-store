@@ -17,7 +17,7 @@ function AboutUs() {
                 <div>
                     <div className="row justify-content-center">
                         <div className="col-12">
-                            <h3 className="text-center mb-2">Get to Know Our Florists:</h3>
+                            <h3 className="text-center mb-2">Florist of the Month:</h3>
                         </div>
                     </div>
                 </div>
