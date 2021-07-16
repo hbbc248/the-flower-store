@@ -48,8 +48,9 @@ function OrderHistory() {
       for (let i=0; i < newArray.length ; i++) {
         totalPaid = totalPaid + (newArray[i].price * newArray[i].purchaseQuantity);
       }
+      const newTotalPaid =  totalPaid.toFixed(2);
       // blend old array, and push newArray and total paid into it
-      const newSigleOrder = Object.assign({}, singleOrder, { productsNew: newArray, totalPaid: totalPaid })
+      const newSigleOrder = Object.assign({}, singleOrder, { productsNew: newArray, totalPaid: newTotalPaid })
       // Push final order array into newOrders array.
       newOrders.push(newSigleOrder);
     }
