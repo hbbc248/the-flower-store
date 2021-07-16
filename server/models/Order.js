@@ -9,7 +9,7 @@ const orderSchema = new Schema({
   },
   shipTo: {
     type: String,
-    required: true  
+    required: true
   },
   shipToAddress: {
     type: String,

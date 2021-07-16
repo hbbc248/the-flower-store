@@ -11,9 +11,18 @@ function Success() {
     async function saveOrder() {
       const cart = await idbPromise('cart', 'get');
       const products = cart.map(item => item._id);
+      const purchaseQuantity = cart.map(item => item.purchaseQuantity)
       const checkoutdetails = await idbPromise('checkout', 'get');
       const orderData = checkoutdetails[0];
-      orderData["products"] = products;
+      // make new array with products and puschaseQuantity
+      let newProductsArray = []
+      for (let i = 0; i < products.length; i++) {
+        for (let j = purchaseQuantity[i]; j > 0; j--) {
+          newProductsArray.push(products[i])
+        }
+      }
+      orderData["products"] = newProductsArray;
+      
       const data = {};
       if (orderData.products.length) {
 
@@ -25,10 +34,10 @@ function Success() {
               message: orderData.message,
               products: orderData.products,
             },
-          });         
-          
+          });
+
           idbPromise('cart', 'clear');
-         
+
         } catch (e) {
           console.log(e);
         }
