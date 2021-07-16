@@ -1,13 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
+import Cart from '../components/Cart'
 import { useQuery } from '@apollo/client';
 import { QUERY_USER } from '../utils/queries';
 
 function OrderHistory() {
   const { data } = useQuery(QUERY_USER);
   let user;
-
   if (data) {
     user = data.user;
   }
@@ -37,14 +36,27 @@ function OrderHistory() {
                       <div>
                         <span>${price}</span>
                       </div>
+                      <div>
+                        <h4>Send to: {order.shipTo}</h4>
+                      </div>
+                      <div>
+                        <h4>Shipping address: {order.shipToAddress}</h4>
+                      </div>
+                      <div>
+                        <h4>Message: {order.message}</h4>
+                      </div>
+                      
                     </div>
+                    
                   ))}
                 </div>
               </div>
             ))}
           </>
+          
         ) : null}
       </div>
+      <Cart/>
     </>
   );
 }

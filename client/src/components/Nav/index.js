@@ -24,6 +24,11 @@ function Nav() {
               Logout
             </a>
           </div>
+          <div>
+            <Link className="nav-item nav-link" to="/aboutus">
+              About Us
+            </Link>
+          </div>
         </div>
       );
     } else {
@@ -42,6 +47,11 @@ function Nav() {
           <div>
             <Link className="nav-item nav-link" to="/login">
               Login
+            </Link>
+          </div>
+          <div>
+            <Link className="nav-item nav-link" to="/aboutus">
+              About Us
             </Link>
           </div>
         </div>

@@ -17,7 +17,7 @@ function Footer () {
 
 return (
 
-    <footer className="text-center text-lg-start bg-light text-muted">
+    <footer className="text-center text-lg-start bg-light text-muted footer">
 
       <section className="">
         <div className="container text-center text-md-start mt-5">
@@ -27,7 +27,7 @@ return (
             <div className="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
              
               <h6 className="text-uppercase fw-bold mb-4">
-                <i className="fas fa-gem me-3"></i>The Flower Shop
+                <i className="fas fa-gem me-3"></i>The Flower shop
               </h6>
               <p>
                 
@@ -52,16 +52,16 @@ return (
                 Useful links
               </h6>
               <p>
-                <a href="#!" className="text-reset">Pricing</a>
+                <a href="/" className="text-reset">Shop</a>
               </p>
               <p>
-                <a href="#!" className="text-reset">Settings</a>
+                <a href="/login" className="text-reset">Login</a>
               </p>
               <p>
-                <a href="#!" className="text-reset">Orders</a>
+                <a href="/cart" className="text-reset">Cart</a>
               </p>
               <p>
-                <a href="#!" className="text-reset">Help</a>
+                <a href="/aboutus" className="text-reset">About Us</a>
               </p>
             </div>
       

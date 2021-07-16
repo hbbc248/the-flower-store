@@ -19,6 +19,7 @@ import { StoreProvider } from "./utils/GlobalState";
 import Success from "./pages/Success";
 import OrderHistory from './pages/OrderHistory';
 import Footer from "./components/Footer/";
+import AboutUs from './pages/AboutUs'
 
 
 const httpLink = createHttpLink({
@@ -55,6 +56,7 @@ function App() {
               <Route exact path="/products/:id" component={Detail} />
               <Route exact path="/success" component={Success} />
               <Route exact path="/cart" component={CartPage} />
+              <Route exact path="/aboutus" component={AboutUs} />
               <Route component={NoMatch} />
             </Switch>
           <Footer /> 

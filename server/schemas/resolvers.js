@@ -1,6 +1,7 @@
 const { AuthenticationError } = require('apollo-server-express');
 const { User, Product, Category, Order } = require('../models');
 const { signToken } = require('../utils/auth');
+//const { nodemailerMiddleware } = require('../utils/nodemailer')
 
 // Stripe payment
 const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc');
@@ -80,8 +81,8 @@ const resolvers = {
           price: price.id,
           quantity: 1
         });
-      }
 
+      }
       const session = await stripe.checkout.sessions.create({
         payment_method_types: ['card'],
         line_items,
@@ -100,11 +101,11 @@ const resolvers = {
 
       return { token, user };
     },
-    addOrder: async (parent, { products }, context) => {
+    addOrder: async (parent, args , context) => {
       console.log(context);
       if (context.user) {
-        const order = new Order({ products });
-
+        const order = new Order(args);
+        
         await User.findByIdAndUpdate(context.user._id, { $push: { orders: order } });
 
         return order;
