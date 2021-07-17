@@ -81,7 +81,8 @@ const CartItem = ({ item }) => {
             aria-label="trash"
             onClick={() => removeFromCart(item)}
           >
-            {' '}🗑️
+            {' '}
+            <i class="fas fa-trash-alt"></i>
           </span>
 
 
