@@ -55,7 +55,7 @@ function OrderHistory() {
       newOrders.push(newSigleOrder);
     }
   });
-
+  
   return (
     <>
       <div className="container my-1">
@@ -63,41 +63,32 @@ function OrderHistory() {
 
         {user ? (
           <>
+
             <h2>
               Order History for {user.firstName} {user.lastName}
             </h2>
             {newOrders.map((order) => (
-              <div key={order._id} className="my-2">
-                <h3>
-                  Order Date: {new Date(parseInt(order.purchaseDate)).toLocaleDateString()}
-                </h3>
-                <div className="flex-row">
+              <div>
+              <button type="button" className="collapsible" data-toggle="collapse" data-target="#boogie">Order Date: {new Date(parseInt(order.purchaseDate)).toLocaleDateString()}</button>
+                <div className="flex-row" key={order._id} >
                   {order.productsNew.map(({ _id, image, name, price, purchaseQuantity }, index) => (
-                    <div key={index} className="card px-1 py-1">
+                    <div key={index} className="card content collapse" id="boogie">
                       <Link to={`/products/${_id}`}>
-                        <img alt={name} src={`/images/${image}`} />
-                        <p>{name}</p>
+                        <img className="card-img-top" alt={name} src={`/images/${image}`} />
+                        <h2>{name}</h2>
                       </Link>
                       <div>
-                        <span>${price}</span>
+                      <ul className="list-group list-group-flush">
+                        <li className="list-group-item">Price: ${price}</li>
+                        <li className="list-group-item">Purchased Quantity:{purchaseQuantity}</li>
+                        <li className="list-group-item">Total Paid: {order.totalPaid}</li>
+                        <li className="list-group-item">Send to: {order.shipTo}</li>
+                        <li className="list-group-item">Shipping address: {order.shipToAddress}</li>
+                        <li className="list-group-item">Message: {order.message}</li>
+                      </ul>
                       </div>
-                      <div>
-                        <h4>Purchased Quantity:{purchaseQuantity}</h4>
                       </div>
-                    </div>
                   ))}
-                </div>
-                <div>
-                  <h4>Total Paid: {order.totalPaid} </h4>
-                </div>
-                <div>
-                  <h4>Send to: {order.shipTo} </h4>
-                </div>
-                <div>
-                  <h4>Shipping address: {order.shipToAddress}</h4>
-                </div>
-                <div>
-                  <h4>Message: {order.message}</h4>
                 </div>
               </div>
             ))}
@@ -110,5 +101,6 @@ function OrderHistory() {
     </>
   );
 }
+
 
 export default OrderHistory;
