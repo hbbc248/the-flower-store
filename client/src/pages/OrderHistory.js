@@ -69,15 +69,16 @@ function OrderHistory() {
             </h2>
             {newOrders.map((order) => (
               <div>
-              <button type="button" className="collapsible" data-toggle="collapse" data-target="#boogie">Order Date: {new Date(parseInt(order.purchaseDate)).toLocaleDateString()}</button>
-                <div className="flex-row" key={order._id} >
+                <div className="flex-row accordion" key={order._id} id="accordionExample" >
+                  <div className="card">
+                <button type="button" className="collapsible" data-toggle="collapse" data-target="#boogie" aria-expanded="true" aria-controls="collapseOne">Order Date: {new Date(parseInt(order.purchaseDate)).toLocaleDateString()}</button>
                   {order.productsNew.map(({ _id, image, name, price, purchaseQuantity }, index) => (
-                    <div key={index} className="card content collapse" id="boogie">
+                    <div key={index} className="collapse show content" id="boogie" data-parent="#accordionExample">
+                      <div className="card-body">
                       <Link to={`/products/${_id}`}>
                         <img className="card-img-top" alt={name} src={`/images/${image}`} />
                         <h2>{name}</h2>
                       </Link>
-                      <div>
                       <ul className="list-group list-group-flush">
                         <li className="list-group-item">Price: ${price}</li>
                         <li className="list-group-item">Purchased Quantity:{purchaseQuantity}</li>
@@ -89,6 +90,7 @@ function OrderHistory() {
                       </div>
                       </div>
                   ))}
+                   </div>
                 </div>
               </div>
             ))}
