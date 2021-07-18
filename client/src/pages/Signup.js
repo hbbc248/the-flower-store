@@ -5,11 +5,24 @@ import Auth from '../utils/auth';
 import { ADD_USER } from '../utils/mutations';
 
 function Signup(props) {
-  const [formState, setFormState] = useState({ email: '', password: '' });
+  const [formState, setFormState] = useState({email: '', password: '', showPassError: false, showEmailError: false});
   const [addUser] = useMutation(ADD_USER);
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
+    const reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+
+    if(formState.password.length < 6) {
+      setFormState({
+        ...formState,
+        showPassError: true,
+      })
+    } else if ((formState.email.length <= 0) || (reg.test(formState.email) === false)){
+      setFormState({
+        ...formState,
+        showEmailError: true,
+      });
+    } else {
     const mutationResponse = await addUser({
       variables: {
         email: formState.email,
@@ -20,6 +33,7 @@ function Signup(props) {
     });
     const token = mutationResponse.data.addUser.token;
     Auth.login(token);
+  }
   };
 
   const handleChange = (event) => {
@@ -30,6 +44,7 @@ function Signup(props) {
     });
   };
 
+  console.log('State!!!', formState)
   return (
     <div  className="card text-center" className="form-group col-lg-4 offset-md-4">
       <h2 class="text-center">Signup </h2>
@@ -64,6 +79,7 @@ function Signup(props) {
             id="email"
             onChange={handleChange}
           />
+           <div class="text-danger" style={{display: formState.showEmailError ? 'block' : 'none'}}>Make email correct format!</div>
         </div>
         <div className="col">
           <label htmlFor="pwd">Password:</label>
@@ -74,6 +90,7 @@ function Signup(props) {
             id="pwd"
             onChange={handleChange}
           />
+          <div class="text-danger" style={{display: formState.showPassError ? 'block' : 'none'}}>Make password more than 6 characters!</div>
         </div>
         <div className="col-auto my-1">
           <button className="btn btn-primary" type="submit">Submit</button>
