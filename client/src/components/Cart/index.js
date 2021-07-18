@@ -46,7 +46,7 @@ const Cart = () => {
             <div className="cart-closed" onClick={toggleCart}>
                 <span
                     role="img"
-                    aria-label="trash">🛒</span>
+                    aria-label="trash"><i class="fa fa-shopping-cart" aria-hidden="true"></i></span>
             </div>
         );
     }
