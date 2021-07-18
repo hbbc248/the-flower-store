@@ -77,9 +77,9 @@ export const DELETE_USER = gql`
     deleteUser(
       password: $password
     ) {
-      user {
+      
         _id
-      }
+      
     }
   }
 `;

@@ -152,11 +152,12 @@ const resolvers = {
     },
     deleteUser: async (parent, { password }, context) => {     
       if (context.user) {
-        const user = await User.findOne(context.user._id);
+        const user = await User.findById(context.user._id);
         const correctPw = await user.isCorrectPassword(password);
         if (!correctPw) {
           throw new AuthenticationError('Incorrect password');
         }
+        
         return await User.findByIdAndDelete(context.user._id);
       }
       throw new AuthenticationError('Not logged in');
