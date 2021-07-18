@@ -55,7 +55,7 @@ function Login(props) {
           </div>
           {error ? (
             <div>
-              <p className="error-text text-center">{error.message}</p>
+              <p className="text-center text-danger">{error.message}</p>
             </div>
           ) : null}
           <div className="row my-2 mx-3 justify-content-center">
