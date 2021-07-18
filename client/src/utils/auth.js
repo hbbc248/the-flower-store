@@ -28,6 +28,10 @@ class AuthService {
   }
 
   login(idToken) {
+    const token = localStorage.getItem('id_token');
+    if (token) {
+      localStorage.removeItem('id_token');
+    }
     // Saves user token to localStorage
     localStorage.setItem('id_token', idToken);
 

@@ -18,6 +18,11 @@ function Nav() {
               Order History
             </Link>
           </div>
+          <div >
+            <Link className="nav-item nav-link" to="/profile">
+              User Profile
+            </Link>
+          </div>
           <div className="nav-item nav-link">
             {/* this is not using the Link component to logout or user and then refresh the application to the start */}
             <a href="/" onClick={() => Auth.logout()}>
