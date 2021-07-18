@@ -88,7 +88,7 @@ const CartPage = () => {
             ...formState,
             [name]: value,
         });
-        console.log(formState);
+        // console.log(formState);
 
     };
 
