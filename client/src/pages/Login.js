@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
-import { Link } from 'react-router-dom';
 import { LOGIN } from '../utils/mutations';
 import Auth from '../utils/auth';
 
@@ -30,40 +29,40 @@ function Login(props) {
   };
 
   return (
- 
-    <div  className="card text-center" className="form-group col-lg-4 offset-md-4">
-     
-      <h2 className="text-center">Login</h2>
-      <form onSubmit={handleFormSubmit}>
-        <div className="col">
-          <label htmlFor="email">Email address:</label>
-          <input className="form-control"
-            placeholder="youremail@test.com"
-            name="email"
-            type="email"
-            id="email"
-            onChange={handleChange}
-          />
-        </div>
-        <div className="col">
-          <label htmlFor="pwd">Password:</label>
-          <input className="form-control"
-            placeholder="******"
-            name="password"
-            type="password"
-            id="pwd"
-            onChange={handleChange}
-          />
-        </div>
-        {error ? (
-          <div>
-            <p className="error-text text-center">{error.message}</p>
+    <div className="row justify-content-center">
+      <div className="card text-center" className="form-group col-md-6 col-lg-4">
+        <h2 className="text-center">Login</h2>
+        <form onSubmit={handleFormSubmit}>
+          <div className="row mx-3">
+            <label htmlFor="email">Email address:</label>
+            <input className="form-control"
+              placeholder="youremail@test.com"
+              name="email"
+              type="email"
+              id="email"
+              onChange={handleChange}
+            />
           </div>
-        ) : null}
-        <div className="col-auto my-1 text-center">
-          <button className="btn btn-primary" type="submit">Submit</button>
-        </div>
-      </form>
+          <div className="row mx-3">
+            <label htmlFor="pwd">Password:</label>
+            <input className="form-control"
+              placeholder="******"
+              name="password"
+              type="password"
+              id="pwd"
+              onChange={handleChange}
+            />
+          </div>
+          {error ? (
+            <div>
+              <p className="error-text text-center">{error.message}</p>
+            </div>
+          ) : null}
+          <div className="row my-2 mx-3 justify-content-center">
+            <button className="btn btn-primary mt-1" type="submit">Submit</button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 }
