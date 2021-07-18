@@ -1,6 +1,5 @@
 import React from 'react';
 import { useMutation } from '@apollo/client';
-import Auth from '../../utils/auth';
 import { DELETE_USER } from '../../utils/mutations';
 
 function DeleteUserBtn(props) {
@@ -16,7 +15,7 @@ function DeleteUserBtn(props) {
                 },
             });
             if (deleteResponse) {
-                Auth.logout();
+                window.location.assign('/userdeleted');
             }
         } catch (e) {
             console.log(e)

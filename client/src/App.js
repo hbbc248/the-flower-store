@@ -21,6 +21,7 @@ import OrderHistory from './pages/OrderHistory';
 import Footer from "./components/Footer/";
 import AboutUs from './pages/AboutUs'
 import Profile from './pages/Profile'
+import UserDeleted from './pages/UserDeleted'
 
 
 const httpLink = createHttpLink({
@@ -59,6 +60,7 @@ function App() {
               <Route exact path="/success" component={Success} />
               <Route exact path="/cart" component={CartPage} />
               <Route exact path="/aboutus" component={AboutUs} />
+              <Route exact path="/userdeleted" component={UserDeleted} />
               <Route component={NoMatch} />
             </Switch>
           <Footer /> 
