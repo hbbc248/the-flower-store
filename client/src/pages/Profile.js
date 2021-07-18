@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import { useMutation, useQuery } from '@apollo/client';
 import Auth from '../utils/auth';
 import { QUERY_USER } from '../utils/queries';
-import { UPDATE_USER, DELETE_USER } from '../utils/mutations';
+import { UPDATE_USER } from '../utils/mutations';
+import DeleteUserBtn from '../components/DeleteUserBtn';
 
 function Profile(props) {
 
   const [updateUser, { error }] = useMutation(UPDATE_USER);
-  const [deleteUser, { error2 }] = useMutation(DELETE_USER);
+
 
   let user = {}
   const { data } = useQuery(QUERY_USER);
@@ -39,6 +39,7 @@ function Profile(props) {
       } else {
         newEmail = formState.email;
       }
+
       const mutationResponse = await updateUser({
         variables: {
           firstName: newFirstName,
@@ -54,23 +55,6 @@ function Profile(props) {
     }
   };
 
-  const handleDelete = async (event) => {
-    event.preventDefault();
-    try {
-      const deleteResponse = await deleteUser({
-        variables: {
-          password: formState.password,
-        },
-      });
-      if (deleteResponse) {
-        Auth.logout();
-      }
-    } catch (e) {
-      console.log(e)
-    }
-  };
-
-
   const handleChange = (event) => {
     const { name, value } = event.target;
     setFormState({
@@ -78,7 +62,6 @@ function Profile(props) {
       [name]: value,
     });
   };
-
 
   return (
     <div className="row justify-content-center">
@@ -126,26 +109,21 @@ function Profile(props) {
               onChange={handleChange}
             />
           </div>
-          {error ? (
-            <div>
-              <p className="error-text text-center">{error.message}</p>
+          <div>
+            {error ? (
+              <div>
+                <p className="error-text text-center">{error.message}</p>
+              </div>
+            ) : null}
+            <div className="row my-2 mx-3 justify-content-center">
+              <button className="btn btn-primary mt-1" id="update" type="submit" onClick={handleUpdate}>Update Profile</button>
             </div>
-          ) : null}
-          {error2 ? (
-            <div>
-              <p className="error-text text-center">{error2.message}</p>
-            </div>
-          ) : null}
-          <div className="row my-2 mx-3 justify-content-center">
-            <button className="btn btn-primary mt-1" type="submit" onClick={handleUpdate}>Update Profile</button>
-            <button className="btn btn-primary ml-2 mt-1" type="submit" onClick={handleDelete} >Delete Profile</button>
           </div>
+          <DeleteUserBtn password={formState.password} />
         </form>
       </div>
     </div>
-
   );
-
 }
 
 export default Profile;
