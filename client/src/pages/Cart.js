@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { TOGGLE_CART, ADD_MULTIPLE_TO_CART } from "../utils/actions";
+import { ADD_MULTIPLE_TO_CART } from "../utils/actions";
 import { idbPromise } from "../utils/helpers";
 import CartItem from '../components/CartItem';
 import Auth from '../utils/auth';
@@ -26,10 +26,7 @@ const CartPage = () => {
 
     const [getCheckout, { data }] = useLazyQuery(QUERY_CHECKOUT);
 
-    function toggleCart() {
-        dispatch({ type: TOGGLE_CART });
-    }
-
+   
     function calculateTotal() {
         let sum = 0;
         state.cart.forEach(item => {
