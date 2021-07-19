@@ -37,16 +37,11 @@
   right: 1%;
   font-size: 2rem;
   cursor: pointer;
-  background-color: var(--secondary);
   border-radius: 50%;
   padding: .25rem;
   width: 58px;
   height: 58px;
   text-align: center;
-}
-
-.cart-closed:hover {
-  transform: rotate(8deg);
 }
 
 .cart img {
