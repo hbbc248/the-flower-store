@@ -1,6 +1,8 @@
 const { AuthenticationError } = require('apollo-server-express');
 const { User, Product, Category, Order } = require('../models');
 const { signToken } = require('../utils/auth');
+const bcrypt = require('bcrypt');
+
 //const { nodemailerMiddleware } = require('../utils/nodemailer')
 
 // Stripe payment
@@ -113,34 +115,52 @@ const resolvers = {
 
       throw new AuthenticationError('Not logged in');
     },
-    updateUser: async (parent, args, context) => {
+    updateUser: async (parent, args , context) => { 
+      
       if (context.user) {
-        return await User.findByIdAndUpdate(context.user._id, args, { new: true });
+        const user = await User.findById(context.user._id);
+        const correctPw = await user.isCorrectPassword(args.password);
+        if (!correctPw) {
+          throw new AuthenticationError('Incorrect password');
+        }
+        args.password = await bcrypt.hash(args.password, 8);
+
+        const newUser = await User.findByIdAndUpdate(context.user._id, args , { new: true });
+      
+        const token = signToken(newUser);
+
+        return { token, newUser };  
       }
-
       throw new AuthenticationError('Not logged in');
-    },
-    updateProduct: async (parent, { _id, quantity }) => {
-      const decrement = Math.abs(quantity) * -1;
-
-      return await Product.findByIdAndUpdate(_id, { $inc: { quantity: decrement } }, { new: true });
     },
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
 
       if (!user) {
-        throw new AuthenticationError('Incorrect credentials');
+        throw new AuthenticationError('Incorrect email');
       }
 
       const correctPw = await user.isCorrectPassword(password);
 
       if (!correctPw) {
-        throw new AuthenticationError('Incorrect credentials');
+        throw new AuthenticationError('Incorrect password');
       }
 
       const token = signToken(user);
 
       return { token, user };
+    },
+    deleteUser: async (parent, { password }, context) => {     
+      if (context.user) {
+        const user = await User.findById(context.user._id);
+        const correctPw = await user.isCorrectPassword(password);
+        if (!correctPw) {
+          throw new AuthenticationError('Incorrect password');
+        }
+        
+        return await User.findByIdAndDelete(context.user._id);
+      }
+      throw new AuthenticationError('Not logged in');
     }
   }
 };
