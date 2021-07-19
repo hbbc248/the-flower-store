@@ -64,9 +64,9 @@ const Cart = () => {
                     </div>
                 </div>
             ) : (
-                <h3>
+                <h4>
                     Your cart is empty!
-                </h3>
+                </h4>
             )}
         </div>
     );
