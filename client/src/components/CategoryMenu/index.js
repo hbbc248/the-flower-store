@@ -45,31 +45,54 @@ function CategoryMenu() {
 
   return (
     <div>
-      <div>
-        <img className="img-fluid" alt="Responsive image" src="../../images/CoverImage.png" ></img>
-      </div>
-      <div className="row justify-content-center">
-        <div className="col-12">
-          <h3 className="text-center">Choose an Occassion:</h3>
-        </div>
-        <div className="col-12 col-lg-8 col-xl-6 row justify-content-center">
-          {categories.map(item => (
-            <button
-              className="button-category btn btn-info m-1 rounded-lg font-weight-bold shadow-sm"
-              key={item._id}
-              onClick={() => {
-                handleClick(item._id);
-              }}
-            >
-              {item.name}
-            </button>
-          ))}
-        </div>
-      </div>
+      <div id="carouselExampleIndicators" className="carousel slide" data-ride="carousel">
+        <ol className="carousel-indicators">
+          <li data-target="#carouselExampleIndicators" data-slide-to="0" className="active"></li>
+          <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+          <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+        </ol>
+        <div className="carousel-inner">
+          <div className="carousel-item active">
+            <img className="d-block w-100" src="../../images/NewCoverImage.jpg" alt="First slide"></img>
     </div>
+            <div className="carousel-item">
+              <img className="d-block w-100" src="../../images/NewSecondCoverImage.jpg" alt="Second slide"></img>
+    </div>
+              <div className="carousel-item">
+                <img className="d-block w-100" src="../../images/NewRosesCoverImage.jpg" alt="Third slide"></img>
+    </div>
+              </div>
+              <a className="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span className="sr-only">Previous</span>
+              </a>
+              <a className="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                <span className="carousel-control-next-icon" aria-hidden="true"></span>
+                <span className="sr-only">Next</span>
+              </a>
+            </div>
+            <div className="row justify-content-center">
+              <div className="col-12">
+                <h3 className="text-center">Choose an Occassion:</h3>
+              </div>
+              <div className="col-12 col-lg-6 col-xl-6 row justify-content-center">
+                {categories.map(item => (
+                  <button
+                    className="button-category btn btn-info m-1 rounded-md font-weight-bold shadow-sm"
+                    key={item._id}
+                    onClick={() => {
+                      handleClick(item._id);
+                    }}
+                  >
+                    {item.name}
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
 
 
-  );
+          );
 }
 
-export default CategoryMenu;
+          export default CategoryMenu;
