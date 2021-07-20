@@ -77,7 +77,6 @@ const CartPage = () => {
             });
         }
     }, [data]);
-
     const handleChange = (event) => {
         const { name, value } = event.target;
         if ((name === 'message') && (value.length <= 300)) {
