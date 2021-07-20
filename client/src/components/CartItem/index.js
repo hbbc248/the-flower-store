@@ -57,7 +57,7 @@ const CartItem = ({ item }) => {
       </div>
       <div className='col-md'>
         <div>
-          <h5>{item.name}</h5>
+          <h6>{item.name}</h6>
         </div>
       </div>
       <div className='col-md'>
@@ -81,7 +81,7 @@ const CartItem = ({ item }) => {
             aria-label="trash"
             onClick={() => removeFromCart(item)}
           >
-            {' '}🗑️
+            {' '}<i className="fa fa-trash" aria-hidden="true"></i>
           </span>
 
 

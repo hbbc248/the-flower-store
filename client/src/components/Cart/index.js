@@ -39,7 +39,7 @@ const Cart = () => {
             <div className="cart-closed" onClick={toggleCart}>
                 <span
                     role="img"
-                    aria-label="trash"><i class="fa fa-shopping-cart" aria-hidden="true"></i></span>
+                    aria-label="trash"><i className="fa fa-shopping-cart" aria-hidden="true"></i></span>
             </div>
         );
     }
@@ -52,19 +52,21 @@ const Cart = () => {
                     {state.cart.map(item => (
                         <CartItem key={item._id} item={item} />
                     ))}
-                    <div className="flex-row space-between m-1">
+                    <div className="flex-row space-between m-2">
+                        <div>
                         <strong>Total: ${calculateTotal()}</strong>
                         <Link to="/cart">
-                            <button className='btn ml-1' onClick={toggleCart}>
+                            <button className="btn ml-2 float-right" onClick={toggleCart}>
                                 Checkout
                             </button>
                         </Link>
+                        </div>
                     </div>
                 </div>
             ) : (
-                <h3>
+                <h4>
                     Your cart is empty!
-                </h3>
+                </h4>
             )}
         </div>
     );

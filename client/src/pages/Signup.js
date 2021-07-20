@@ -46,7 +46,7 @@ function Signup(props) {
   // console.log('State!!!', formState)
   return (
     <div className="row justify-content-center">
-      <div className="card text-center" className="form-group col-md-6 col-lg-4">
+      <div className="card text-center form-group col-md-6 col-lg-4">
         <h2 className="text-center">Signup </h2>
         <form onSubmit={handleFormSubmit}>
           <div className="row mx-3">

@@ -108,16 +108,16 @@ function Detail() {
           <Link to="/">← Back to Products</Link>
           <div className="card row">
             <div className="row">
-              <div class="col-lg-4">
+              <div className="col-lg-4">
                 <img
                   className="m-1 rounded mx-auto d-block"
                   src={`/images/${currentProduct.image}`}
                   alt={currentProduct.name}
                 />
               </div>
-              <div class="col-lg-8">
-                <div class="card-body">
-                  <h3 class="card-title">{currentProduct.name}</h3>
+              <div className="col-lg-8">
+                <div className="card-body">
+                  <h3 className="card-title">{currentProduct.name}</h3>
 
                   <p className="card-text">{currentProduct.description}</p>
 

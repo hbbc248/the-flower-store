@@ -53,7 +53,7 @@ return (
               </h6>
               {categories.map(category => (
               <p key={category.name}>
-                  <a className="text-reset" key={category._id} onClick={() => handleClick(category._id)}>{category.name}</a>
+                <button className ='text-reset bg-light' key={category.id} onClick={() => handleClick(category._id)}>{category.name}</button>
               </p>
               ))}
             </div>
