@@ -115,9 +115,9 @@ function Detail() {
                   alt={currentProduct.name}
                 />
               </div>
-              <div class="col-lg-8">
-                <div class="card-body">
-                  <h3 class="card-title">{currentProduct.name}</h3>
+              <div className="col-lg-8">
+                <div className="card-body">
+                  <h3 className="card-title">{currentProduct.name}</h3>
 
                   <p className="card-text">{currentProduct.description}</p>
 
