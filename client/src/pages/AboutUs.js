@@ -16,7 +16,7 @@ function AboutUs() {
                     </p>
                 </div>
                 <div className="container">
-                    <img src="../../images/flowershopfinalpic.jpg" className="img-fluid" alt="Responsive image"></img>
+                    <img src="../../images/flowershopfinalpic.jpg" className="img-fluid" alt="flower display"></img>
                 </div>
             </div>
 
@@ -32,7 +32,7 @@ function AboutUs() {
                                 <br></br>She does not slow down, come by the shop to see her at work!</p>
                         </div>
                         <div className="col-auto d-none d-lg-block">
-                            <img className="card-img-top image" src="../../images/florist1.png" alt="Card image cap"></img>
+                            <img className="card-img-top image" src="../../images/florist1.png" alt="Susan working on flower bouquet"></img>
 
                         </div>
                     </div>
