@@ -56,7 +56,7 @@ const Cart = () => {
                         <div>
                         <strong>Total: ${calculateTotal()}</strong>
                         <Link to="/cart">
-                            <button class="btn ml-2 float-right" onClick={toggleCart}>
+                            <button className="btn ml-2 float-right" onClick={toggleCart}>
                                 Checkout
                             </button>
                         </Link>

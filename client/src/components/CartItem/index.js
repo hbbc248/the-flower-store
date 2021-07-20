@@ -57,12 +57,12 @@ const CartItem = ({ item }) => {
       </div>
       <div className='col-md'>
         <div>
-          <h7>{item.name}</h7>
+          <h6>{item.name}</h6>
         </div>
       </div>
       <div className='col-md'>
         <div>
-          <h7>${item.price}</h7>
+          <h6>${item.price}</h6>
         </div>
       </div>
       <div className='col-md col-sm col-lg'>
@@ -81,7 +81,7 @@ const CartItem = ({ item }) => {
             aria-label="trash"
             onClick={() => removeFromCart(item)}
           >
-            {' '}<i class="fa fa-trash" aria-hidden="true"></i>
+            {' '}<i className="fa fa-trash" aria-hidden="true"></i>
           </span>
 
 

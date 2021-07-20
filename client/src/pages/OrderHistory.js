@@ -56,7 +56,7 @@ function OrderHistory() {
     }
   });
 
-  console.log(newOrders);
+  // console.log(newOrders);
 
   return (
     <>
