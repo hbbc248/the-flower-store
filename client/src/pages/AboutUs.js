@@ -10,10 +10,11 @@ function AboutUs() {
         <div>
             <div className="jumbotron">
                 <div className="container">
-                    <h5 className="display-4">Get to Know Our Shop:</h5>
+                    <h3 className="display-5">Get to Know Our Shop:</h3>
                     <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
-                    <p>      <button type="button" onClick={() => push('/')} className="btn btn-primary btn-lg px-4 me-sm-3">Check Out Our Products!</button>
-                    </p>
+                    <div className="text-center mb-4">
+                        <button type="button" onClick={() => push('/')} className="btn btn-primary btn-lg px-4 me-sm-3">Check Out Our Products!</button>
+                    </div>
                 </div>
                 <div className="container">
                     <img src="../../images/flowershopfinalpic.jpg" className="img-fluid" alt="flower display"></img>
