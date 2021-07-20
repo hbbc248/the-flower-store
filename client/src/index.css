@@ -98,11 +98,6 @@ img {
   flex-wrap: nowrap;
 }
 
-
-.card-body img {
-  width: 18rem;
-}
-
 .orderButton button {
  height: 200% !important;
 }

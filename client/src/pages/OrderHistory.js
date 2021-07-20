@@ -61,7 +61,7 @@ function OrderHistory() {
 
   return (
 
-<>
+    <>
       <div className="container my-1">
         <Link to="/">← Back to Products</Link>
         {user ? (
@@ -106,7 +106,10 @@ function OrderHistory() {
                         <h6 className="text-right mr-4 my-2">Total Paid: ${order.totalPaid}</h6>
                         <h6 className="">Send to: {order.shipTo}</h6>
                         <h6 className="">Shipping address: {order.shipToAddress}</h6>
-                        <h6 className="">Personalized message: "{order.message}"</h6>
+                        {order.message ? (
+                          <h6 className="">Personalized message: "{order.message}"</h6>
+                        ) : null}
+                        
                       </div>
                     </div>
                   </div>
@@ -119,6 +122,6 @@ function OrderHistory() {
       <Cart />
     </>
   )
-    };
+};
 
 export default OrderHistory;

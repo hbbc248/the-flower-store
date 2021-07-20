@@ -12,7 +12,7 @@ function AboutUs() {
                 <div className="container">
                     <h5 className="display-4">Get to Know Our Shop:</h5>
                     <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
-                    <p>      <button type="button" onClick={() => push('/')} className="btn btn-primary btn-lg px-4 me-sm-3">Check Out Our Products!</button>
+                    <p className="text-center"><button type="button" onClick={() => push('/')} className="btn btn-primary btn-lg px-4 me-sm-3">Check Out Our Products!</button>
                     </p>
                 </div>
                 <div className="container">
@@ -22,7 +22,7 @@ function AboutUs() {
 
             <div className="col-md-12">
                 <div className="container">
-                    <div className="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                    <div className="row no-gutters border p-2 rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
                     <img className="card-img-top image" src="../../images/florist1.png" alt="Susan working on flower bouquet"></img>
                         <div className="col p-4 d-flex flex-column position-static">
                             <h3 className="mb-0">Florist of the Month:</h3>
