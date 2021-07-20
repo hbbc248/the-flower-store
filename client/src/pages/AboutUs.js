@@ -23,6 +23,7 @@ function AboutUs() {
             <div className="col-md-12">
                 <div className="container">
                     <div className="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                    <img className="card-img-top image" src="../../images/florist1.png" alt="Susan working on flower bouquet"></img>
                         <div className="col p-4 d-flex flex-column position-static">
                             <h3 className="mb-0">Florist of the Month:</h3>
                             <div className="mb-1 text-muted">July 2021</div>
@@ -32,7 +33,7 @@ function AboutUs() {
                                 <br></br>She does not slow down, come by the shop to see her at work!</p>
                         </div>
                         <div className="col-auto d-none d-lg-block">
-                            <img className="card-img-top image" src="../../images/florist1.png" alt="Susan working on flower bouquet"></img>
+                           
 
                         </div>
                     </div>

@@ -74,7 +74,7 @@ function OrderHistory() {
               {newOrders.map((order) => (
                 <div key={order._id} className="card">
                   <div className="card-header" id="headingTwo">
-                    <h2 className="mb-0">
+                    <h2 className="mb-0 orderButton">
                       <button className="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target={"#collapse" + order._id} aria-expanded="true" aria-controls="collapse">
                         Order Placed On: {new Date(parseInt(order.purchaseDate)).toLocaleDateString()}
                       </button>
