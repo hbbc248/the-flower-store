@@ -8,7 +8,7 @@ db.once('open', async () => {
     { name: 'All' },
     { name: 'Anniversary' },
     { name: 'Birthday' },
-    { name: 'Get well' },
+    { name: 'Get Well' },
     { name: 'Just Because'},
     { name: 'Extra'}
   ]);

@@ -108,7 +108,7 @@ function Detail() {
           <Link to="/">← Back to Products</Link>
           <div className="card row">
             <div className="row">
-              <div class="col-lg-4">
+              <div className="col-lg-4">
                 <img
                   className="m-1 rounded mx-auto d-block"
                   src={`/images/${currentProduct.image}`}

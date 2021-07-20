@@ -65,8 +65,8 @@ function Profile(props) {
 
   return (
     <div className="row justify-content-center">
-      <div className="card text-center form-group col-md-6 col-lg-4">
-        <h2 class="text-center">User Profile</h2>
+      <div className="card text-center" className="form-group col-md-6 col-lg-4">
+        <h2 className="text-center">User Profile</h2>
         <form>
           <div className="row mx-3">
             <label htmlFor="firstName">First Name:</label>

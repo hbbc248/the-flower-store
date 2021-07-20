@@ -20,13 +20,13 @@ const CartPage = () => {
 
     const [inputMessage, setMessage] = useState('')
 
-    const [formState, setFormState] = useState({ shipTo: '', shipToAddress: '', message: '' });
+    const [formState, setFormState] = useState({ shipTo: '', shipToAddress: '', message: '', showErrorShipTo: true, showErrorAddress: true });
 
     const [state, dispatch] = useStoreContext();
 
     const [getCheckout, { data }] = useLazyQuery(QUERY_CHECKOUT);
 
-   
+
     function calculateTotal() {
         let sum = 0;
         state.cart.forEach(item => {
@@ -35,24 +35,27 @@ const CartPage = () => {
         return sum.toFixed(2);
     }
 
-    function submitCheckout() {
-        const productIds = [];
+    const submitCheckout = async (event) => {
+        event.preventDefault();
+        
+        if ((formState.showErrorShipTo) || (formState.showErrorAddress)) {
+            return false;
+        } else {
+            const productIds = [];
+            state.cart.forEach((item) => {
+                for (let i = 0; i < item.purchaseQuantity; i++) {
+                    productIds.push(item._id);
+                }
+            });
+            // save checkout details into indexedDB
+            // clear first
+            idbPromise('checkout', 'clear', {});
+            idbPromise('checkout', 'add', { ...formState });
 
-        state.cart.forEach((item) => {
-            for (let i = 0; i < item.purchaseQuantity; i++) {
-                productIds.push(item._id);
-            }
-        });
-
-
-        // save checkout details into indexedDB
-        // clear first
-        idbPromise('checkout', 'clear', {});
-        idbPromise('checkout', 'add', { ...formState });
-
-        getCheckout({
-            variables: { products: productIds }
-        });
+            getCheckout({
+                variables: { products: productIds }
+            });
+        }
     }
 
     useEffect(() => {
@@ -84,9 +87,10 @@ const CartPage = () => {
         setFormState({
             ...formState,
             [name]: value,
+            showErrorShipTo: (formState.shipTo.length < 1),
+            showErrorAddress: (formState.shipToAddress.length < 6),
         });
         // console.log(formState);
-
     };
 
     return (
@@ -101,12 +105,12 @@ const CartPage = () => {
                     ))}
 
                     <div className="text-right mr-md-4">
-                        <h2>Total: ${calculateTotal()}</h2>
+                        <h4>Total: ${calculateTotal()}</h4>
                     </div>
                     <form className="my-3">
                         <div className="form-row">
                             <div className="form-group col-md-6">
-                                <label htmlFor="ShipTo">Shipping to:</label>
+                                <label htmlFor="ShipTo">Shipping to (Required):</label>
                                 <input type="name"
                                     name="shipTo"
                                     className="form-control"
@@ -114,9 +118,10 @@ const CartPage = () => {
                                     id="shipTo"
                                     onChange={handleChange}
                                 />
+                                <div className="text-center text-danger" style={{ display: formState.showErrorShipTo ? 'block' : 'none' }}>Please fill out Shipping to field</div>
                             </div>
                             <div className="form-group col-md-6">
-                                <label htmlFor="ShipToAddress">Shipping Address:</label>
+                                <label htmlFor="ShipToAddress">Shipping Address (Required):</label>
                                 <input type="address"
                                     name="shipToAddress"
                                     className="form-control"
@@ -124,6 +129,7 @@ const CartPage = () => {
                                     id="address"
                                     onChange={handleChange}
                                 />
+                                <div className="text-center text-danger" style={{ display: formState.showErrorAddress ? 'block' : 'none' }}>Please enter a valid address!</div>
                             </div>
                         </div>
                         <div className="form-row">
@@ -139,7 +145,7 @@ const CartPage = () => {
                                     id="message"
                                     onChange={handleChange}
                                 />
-                                <p className={`${charCount >= 300 ? 'error' : ''}`}>Characters left:{' '}{300 - charCount}</p>
+                                <p className={`${charCount >= 300 ? 'text-danger' : ''}`}>Characters left:{' '}{300 - charCount}</p>
                             </div>
                         </div>
                     </form>
