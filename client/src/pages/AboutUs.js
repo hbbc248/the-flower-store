@@ -17,7 +17,7 @@ function AboutUs() {
                     </div>
                 </div>
                 <div className="container">
-                    <img src="../../images/flowershopfinalpic.jpg" className="img-fluid" alt="flower display"></img>
+                    <img src="../../images/flowershopfinalpic.jpg" className="img-fluid ml-0" alt="flower display"></img>
                 </div>
             </div>
 
