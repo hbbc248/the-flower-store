@@ -17,16 +17,18 @@ function AboutUs() {
                     </div>
                 </div>
                 <div className="container">
-                    <img src="../../images/flowershopfinalpic.jpg" className="img-fluid ml-0" alt="flower display"></img>
+                    <img src="../../images/flowershopfinalpic.jpg" className="col-12" alt="flower display"></img>
                 </div>
             </div>
 
-            <div className="col-md-12">
+            <div className="col-12">
                 <div className="container">
-                    <div className="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-                    <img className="card-img-top image" src="../../images/florist1.png" alt="Susan working on flower bouquet"></img>
-                        <div className="col p-4 d-flex flex-column position-static">
-                            <h3 className="mb-0">Florist of the Month:</h3>
+                    <div className="row align-items-center no-gutters border p-2 rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                        <div className="col-md-4">
+                            <img className="card-img" src="../../images/florist1.png" alt="Susan working on flower bouquet"></img>
+                        </div>
+                        <div className="col-md-8 p-4 d-flex flex-column position-static">
+                            <h4 className="mb-0">Florist of the Month:</h4>
                             <div className="mb-1 text-muted">July 2021</div>
                             <br></br>
                             <p className="card-text mb-auto"> Susan has been employee of the month for the last 36 months straight.
@@ -34,7 +36,7 @@ function AboutUs() {
                                 <br></br>She does not slow down, come by the shop to see her at work!</p>
                         </div>
                         <div className="col-auto d-none d-lg-block">
-                           
+
 
                         </div>
                     </div>
@@ -42,7 +44,7 @@ function AboutUs() {
             </div>
             <Cart />
         </div>
-   
+
     )
 }
 
