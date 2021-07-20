@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import Cart from '../components/Cart'
 import { useQuery } from '@apollo/client';
 import { QUERY_USER } from '../utils/queries';
+import { Accordion } from 'react-bootstrap';
 
 function OrderHistory() {
   const { data } = useQuery(QUERY_USER);
@@ -16,6 +17,7 @@ function OrderHistory() {
   // Ohh my god! This is the worst and most complicated algorithm I have done so far. I wish React can overwrite objects and arrays as simple Javascript.
   // new empty array for orders
   let newOrders = [];
+  console.log(newOrders)
   // Do this for each order on the array
   orders.forEach(order => {
     let singleOrder = order
@@ -57,43 +59,35 @@ function OrderHistory() {
   });
   
   return (
-    <>
+
+<>
       <div className="container my-1">
         <Link to="/">← Back to Products</Link>
 
         {user ? (
           <>
-
             <h2>
               Order History for {user.firstName} {user.lastName}
             </h2>
-            {newOrders.map((order) => (
-              <div>
-                <div className="flex-row accordion" key={order._id} id="accordionExample" >
-                  <div className="card">
-                <button type="button" className="collapsible" data-toggle="collapse" data-target="#data" aria-expanded="true" aria-controls="collapseOne">Order Date: {new Date(parseInt(order.purchaseDate)).toLocaleDateString()}</button>
-                  {order.productsNew.map(({ _id, image, name, price, purchaseQuantity }, index) => (
-                    <div key={index} className="collapse show content" id="data" data-parent="#accordionExample">
-                      <div className="card-body">
-                      <Link to={`/products/${_id}`}>
-                        <img className="card-img-top" alt={name} src={`/images/${image}`} />
-                        <h2>{name}</h2>
-                      </Link>
-                      <ul className="list-group list-group-flush">
-                        <li className="list-group-item">Price: ${price}</li>
-                        <li className="list-group-item">Purchased Quantity:{purchaseQuantity}</li>
-                        <li className="list-group-item">Total Paid: {order.totalPaid}</li>
-                        <li className="list-group-item">Send to: {order.shipTo}</li>
-                        <li className="list-group-item">Shipping address: {order.shipToAddress}</li>
-                        <li className="list-group-item">Message: {order.message}</li>
-                      </ul>
-                      </div>
-                      </div>
-                  ))}
-                   </div>
-                </div>
-              </div>
-            ))}
+            <div className="accordion flex-row" id="accordionExample">
+            {newOrders.map((order, index) => (
+ <div class="card">
+ <div class="card-header" id="headingOne">
+   <h2 class="mb-0">
+     <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+       Collapsible Group Item #1
+     </button>
+   </h2>
+ </div>
+
+ <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+   <div class="card-body">
+     Some placeholder content for the first accordion panel. This panel is shown by default, thanks to the <code>.show</code> class.
+   </div>
+ </div>
+</div>
+          ))}
+          </div>
 
           </>
 
@@ -101,8 +95,7 @@ function OrderHistory() {
       </div>
       <Cart />
     </>
-  );
-}
-
+  )
+    };
 
 export default OrderHistory;

@@ -15,5 +15,9 @@
   "license": "ISC",
   "devDependencies": {
     "concurrently": "^5.1.0"
+  },
+  "dependencies": {
+    "bootstrap": "^5.0.2",
+    "react-bootstrap": "^1.6.1"
   }
 }
