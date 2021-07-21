@@ -54,7 +54,7 @@ return (
               </h6>
               <p>1111 N Street <br/> Austin, Tx</p>
               <p>
-              <a href="mailto:flower-shop-project-3@hotmail.com">flower-shop-project-3@hotmail.com</a>
+              <a href="mailto:flower-shop-project-3@outlook.com">flower-shop-project-3@outlook.com</a>
               </p>
               <p> 1 (234)-567-8900</p>
               {/* <br/> */}

@@ -16,7 +16,7 @@ module.exports = {
                 ciphers: 'SSLv3'
             },
             auth: {
-                user: 'flower-shop-project-3@hotmail.com',
+                user: 'flower-shop-project-3@outlook.com',
                 pass: 'Flower.1234321'
             }
         });
@@ -37,7 +37,7 @@ module.exports = {
 
         // setup e-mail data, even with unicode symbols
         let mailOptions = {
-            from: '"Flower Shop" <flower-shop-project-3@hotmail.com>', // sender address (who sends)
+            from: '"Flower Shop" <flower-shop-project-3@outlook.com>', // sender address (who sends)
             to: email, // list of receivers (who receives)
             subject: 'Flower Shop - New order confirmation.', // Subject line
             template: ('index'),
