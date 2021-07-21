@@ -92,7 +92,7 @@ function Signup(props) {
             <div className="text-danger" style={{ display: formState.showPassError ? 'block' : 'none' }}>Make password at least 6 characters!</div>
           </div>
           <div className="row my-2 mx-3 justify-content-center">
-            <button className="btn btn-primary mt-1" type="submit">Submit</button>
+            <button className="btn btn-primary mt-1" type="submit">Signup</button>
           </div>
         </form>
       </div>
