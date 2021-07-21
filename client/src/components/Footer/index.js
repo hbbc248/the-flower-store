@@ -4,6 +4,8 @@ import { UPDATE_CURRENT_CATEGORY, UPDATE_CATEGORIES } from "../../utils/actions"
 import { QUERY_CATEGORIES } from '../../utils/queries';
 import { useQuery } from '@apollo/client';
 
+import Auth from "../../utils/auth";
+
 function Footer () {
   const [state, dispatch] = useStoreContext();
 
@@ -37,12 +39,10 @@ return (
           <div className="row mt-3">
          
             <div className="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
-             
-              <h6 className="text-uppercase fw-bold mb-4">
-                The Flower shop
-              </h6>
               <div>
+                <a href='/'>
                 <img className='card-img-top' alt='flowershop logo' src="../../images/flowerShopTransparentBg.png"/>
+                </a>
               </div>
             </div>
 
@@ -75,6 +75,14 @@ return (
               <p>
                 <a href="/aboutus" className="text-reset">About Us</a>
               </p>
+              {
+                Auth.loggedIn() ?
+                    <p>
+                      <a href="/profile" className="text-reset">Your Profile</a>
+                    </p>
+                    :
+                    <p></p>
+                }
             </div>
       
             <div className="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
