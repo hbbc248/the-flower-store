@@ -59,6 +59,9 @@ function Success() {
           Thank you for your purchase!
         </h2>
         <h2>
+          An confirmation email was sent to you!
+        </h2>
+        <h2>
           You will now be redirected to the home page
         </h2>
       </Jumbotron>

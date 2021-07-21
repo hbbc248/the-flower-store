@@ -5,6 +5,7 @@ import { QUERY_CATEGORIES } from '../../utils/queries';
 import { useQuery } from '@apollo/client';
 
 import Auth from "../../utils/auth";
+import CategoryMenu from "../CategoryMenu";
 
 function Footer () {
   const [state, dispatch] = useStoreContext();
@@ -22,23 +23,16 @@ function Footer () {
     }
   }, [data, loading, dispatch])
 
-  const handleClick = id => {
-    dispatch({
-      type: UPDATE_CURRENT_CATEGORY,
-      currentCategory: id
-    });
-  };
-
 return (
 
     <footer className="text-center text-lg-start bg-light text-muted footer">
 
-      <section className="">
+      <section>
         <div className="container text-center text-md-start mt-5">
        
-          <div className="row mt-3">
+          <div className="row mt-1 align-items-center">
          
-            <div className="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+            <div className="col-md-4 col-lg-4 col-xl-4 mx-auto mb-4">
               <div>
                 <a href='/'>
                 <img className='card-img-top' alt='flowershop logo' src="../../images/flowerShopTransparentBg.png"/>
@@ -46,19 +40,7 @@ return (
               </div>
             </div>
 
-            <div className="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
-     
-              <h6 className="text-uppercase fw-bold mb-4">
-                Categories
-              </h6>
-              {categories.map(category => (
-              <p key={category.name}>
-                <button className ='text-reset bg-light' key={category.id} onClick={() => handleClick(category._id)}>{category.name}</button>
-              </p>
-              ))}
-            </div>
-
-            <div className="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+            <div className="col-md-4 col-lg-4 col-xl-4 mx-auto mb-md-0 mb-4">
       
               <h6 className="text-uppercase fw-bold mb-4">
                 Useful links
@@ -85,18 +67,19 @@ return (
                 }
             </div>
       
-            <div className="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+            <div className="col-md-4 col-lg-4 col-xl-4 mx-auto mb-md-0 mb-4">
       
               <h6 className="text-uppercase fw-bold mb-4">
                 Contact
               </h6>
-              <p>Austin, Tx</p>
+              <p>1111 N Street <br/> Austin, Tx</p>
               <p>
                 flowershop@example.com
               </p>
               <p> 1 (234)-567-8900</p>
+              {/* <br/> */}
               <p>
-                <i className="fab fa-facebook-square" alt='facebook logo'></i>{' '}
+              <i className="fab fa-facebook-square" alt='facebook logo'></i>{' '}
               <i className="fab fa-instagram" alt='instagram logo'></i>{' '}
               <i className="fab fa-twitter" alt='twitter logo'></i>{' '}
               <i className="fab fa-google" alt='google logo'></i>{' '}

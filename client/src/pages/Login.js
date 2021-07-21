@@ -59,7 +59,7 @@ function Login(props) {
             </div>
           ) : null}
           <div className="row my-2 mx-3 justify-content-center">
-            <button className="btn btn-primary mt-1" type="submit">Submit</button>
+            <button className="btn btn-primary mt-1" type="submit">Login</button>
           </div>
         </form>
       </div>
