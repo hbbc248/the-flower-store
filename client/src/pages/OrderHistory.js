@@ -16,7 +16,7 @@ function OrderHistory() {
   // Ohh my god! This is the worst and most complicated algorithm I have done so far. I wish React can overwrite objects and arrays as simple Javascript.
   // new empty array for orders
   let newOrders = [];
-  console.log(newOrders)
+  // console.log(newOrders)
   // Do this for each order on the array
   orders.forEach(order => {
     let singleOrder = order
