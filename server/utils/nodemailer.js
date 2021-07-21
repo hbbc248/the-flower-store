@@ -1,27 +1,37 @@
-// const nodemailer = require('nodemailer')
+const nodemailer = require("nodemailer");
 
-// module.exports = {
-    
-//     nodemailerMiddleware: async ({ email, orders }) => {
-//     const transporter = nodemailer.createTransport({
-//       host: 'smtp.ethereal.email',
-//       port: 587,
-//       secure: false,
-//       auth: {
-//           user: "hank.miller@ethereal.email",
-//           pass:"wHRVJEvdPe9V464TbA"
-//       }
-//   })
-//     const msg = {
-//       from: '"Flower Shop" <flower-shop@email.com>',
-//       to:  `${email}` ,
-//       subject: 'Your recent order',
-//       text: `${orders.products}`
-//     }
+module.exports = {
+    sendEmail: function (email) {
+        // node mailer
+        // Create the transporter with the required configuration for Outlook
+        // change the user and pass !
+        var transporter = nodemailer.createTransport({
+            host: "smtp-mail.outlook.com", // hostname
+            secureConnection: false, // TLS requires secureConnection to be false
+            port: 587, // port for secure SMTP
+            tls: {
+                ciphers: 'SSLv3'
+            },
+            auth: {
+                user: 'flower-shop-project-3@hotmail.com',
+                pass: 'Flower.1234321'
+            }
+        });
 
-//   const info = await transporter.sendMail(msg)
-  
-//   console.log("message sent", info.messageId)
-  
-//   }
-// }
+        // setup e-mail data, even with unicode symbols
+        var mailOptions = {
+            from: '"The Flower Shop" <flower-shop-project-3@hotmail.com>', // sender address (who sends)
+            to: email, // list of receivers (who receives)
+            subject: 'The Flower Shop - New order confirmation.', // Subject line
+            html: `this finally works`
+        };
+
+        // send mail with defined transport object
+        transporter.sendMail(mailOptions, function (error, info) {
+            if (error) {
+                console.log(error);
+            }
+            console.log('Message sent');
+        });
+    }
+}

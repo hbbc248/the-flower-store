@@ -2,8 +2,8 @@ const { AuthenticationError } = require('apollo-server-express');
 const { User, Product, Category, Order } = require('../models');
 const { signToken } = require('../utils/auth');
 const bcrypt = require('bcrypt');
+const { sendEmail } = require('../utils/nodemailer')
 
-//const { nodemailerMiddleware } = require('../utils/nodemailer')
 
 // Stripe payment
 const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc');
@@ -103,20 +103,22 @@ const resolvers = {
 
       return { token, user };
     },
-    addOrder: async (parent, args , context) => {
-      console.log(context);
+    addOrder: async (parent, args, context) => {
       if (context.user) {
         const order = new Order(args);
-        
+
         await User.findByIdAndUpdate(context.user._id, { $push: { orders: order } });
+
+        const email = context.user.email;
+        sendEmail(email);      
 
         return order;
       }
 
       throw new AuthenticationError('Not logged in');
     },
-    updateUser: async (parent, args , context) => { 
-      
+    updateUser: async (parent, args, context) => {
+
       if (context.user) {
         const user = await User.findById(context.user._id);
         const correctPw = await user.isCorrectPassword(args.password);
@@ -125,11 +127,11 @@ const resolvers = {
         }
         args.password = await bcrypt.hash(args.password, 8);
 
-        const newUser = await User.findByIdAndUpdate(context.user._id, args , { new: true });
-      
+        const newUser = await User.findByIdAndUpdate(context.user._id, args, { new: true });
+
         const token = signToken(newUser);
 
-        return { token, newUser };  
+        return { token, newUser };
       }
       throw new AuthenticationError('Not logged in');
     },
@@ -150,14 +152,14 @@ const resolvers = {
 
       return { token, user };
     },
-    deleteUser: async (parent, { password }, context) => {     
+    deleteUser: async (parent, { password }, context) => {
       if (context.user) {
         const user = await User.findById(context.user._id);
         const correctPw = await user.isCorrectPassword(password);
         if (!correctPw) {
           throw new AuthenticationError('Incorrect password');
         }
-        
+
         return await User.findByIdAndDelete(context.user._id);
       }
       throw new AuthenticationError('Not logged in');
