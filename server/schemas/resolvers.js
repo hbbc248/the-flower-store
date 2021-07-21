@@ -110,7 +110,7 @@ const resolvers = {
         await User.findByIdAndUpdate(context.user._id, { $push: { orders: order } });
 
         const email = context.user.email;
-        sendEmail(email);      
+        sendEmail(email, args);      
 
         return order;
       }

@@ -1,7 +1,7 @@
 const nodemailer = require("nodemailer");
 
 module.exports = {
-    sendEmail: function (email) {
+    sendEmail: function (email, args) {
         // node mailer
         // Create the transporter with the required configuration for Outlook
         // change the user and pass !
@@ -20,10 +20,13 @@ module.exports = {
 
         // setup e-mail data, even with unicode symbols
         var mailOptions = {
-            from: '"The Flower Shop" <flower-shop-project-3@hotmail.com>', // sender address (who sends)
+            from: '"Flower Shop" <flower-shop-project-3@hotmail.com>', // sender address (who sends)
             to: email, // list of receivers (who receives)
-            subject: 'The Flower Shop - New order confirmation.', // Subject line
-            html: `this finally works`
+            subject: 'Flower Shop - New order confirmation.', // Subject line
+            html: `<b>Flower Shop - New order confirmation</b><br><br>You have posted a new order in the flower shop<br>
+            Order details:<br>Ship to: ${args.shipTo}.<br>Shipping address: ${args.shipToAddress}<br>
+            Message: ${args.message}<br><br>
+            For more details information about the order please log into your Flower Shop account. https://flower-shop-project-3.herokuapp.com/`
         };
 
         // send mail with defined transport object
