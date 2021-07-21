@@ -11,7 +11,7 @@ function AboutUs() {
             <div className="jumbotron">
                 <div className="container">
                     <h3 className="display-5">Get to Know Our Shop:</h3>
-                    <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
+                    <p>Founded in 1837, The Flower Shop is passionate and driven to connect every customer with the ones that they love the most in the best way we know  how. We started this company from the ground up, pun intended, growing flowers in our backyard and gifting them to our loved ones, we decided to share the wealth and start marketing out bouquets. Slowly building our clientele we are now 3,000 member strong and counting. Thank you for your support, if you are new here: Welcome to the flower shop family! </p>
                     <div className="text-center mb-4">
                         <button type="button" onClick={() => push('/')} className="btn btn-primary btn-lg px-4 me-sm-3">Check Out Our Products!</button>
                     </div>
