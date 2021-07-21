@@ -13,14 +13,14 @@ module.exports = {
                 ciphers: 'SSLv3'
             },
             auth: {
-                user: 'call-me-later-app@hotmail.com',
-                pass: 'Call.1234321'
+                user: 'flower-shop-project-3@outlook.com',
+                pass: 'Flower.1234321'
             }
         });
 
         // setup e-mail data, even with unicode symbols
         var mailOptions = {
-            from: '"Call Me Maybe reviews" <call-me-later-app@hotmail.com>', // sender address (who sends)
+            from: '"Flower Shop" <flower-shop-project-3@outlook.com>', // sender address (who sends)
             to: email, // list of receivers (who receives)
             subject: 'Flower Shop - New order confirmation.', // Subject line
             html: `<b>Flower Shop - New order confirmation</b><br><br>You have posted a new order in the flower shop<br>
