@@ -98,10 +98,18 @@ const resolvers = {
   },
   Mutation: {
     addUser: async (parent, args) => {
-      const user = await User.create(args);
-      const token = signToken(user);
 
-      return { token, user };
+      const email = args.email;
+      const user = await User.findOne({ email });
+
+      if (user) {
+        throw new AuthenticationError('The email entered is already registered on our site, Please log in or use a different email.');
+      }
+
+      const newUser = await User.create(args);
+      const token = signToken(newUser);
+
+      return { token, newUser };
     },
     addOrder: async (parent, args, context) => {
       if (context.user) {

@@ -5,7 +5,7 @@ import { ADD_USER } from '../utils/mutations';
 
 function Signup(props) {
   const [formState, setFormState] = useState({ email: '', password: '', showPassError: false, showEmailError: false });
-  const [addUser] = useMutation(ADD_USER);
+  const [addUser, { error }] = useMutation(ADD_USER);
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
@@ -22,16 +22,20 @@ function Signup(props) {
         showEmailError: true,
       });
     } else {
-      const mutationResponse = await addUser({
-        variables: {
-          email: formState.email,
-          password: formState.password,
-          firstName: formState.firstName,
-          lastName: formState.lastName,
-        },
-      });
-      const token = mutationResponse.data.addUser.token;
-      Auth.login(token);
+      try {
+        const mutationResponse = await addUser({
+          variables: {
+            email: formState.email,
+            password: formState.password,
+            firstName: formState.firstName,
+            lastName: formState.lastName,
+          },
+        });
+        const token = mutationResponse.data.addUser.token;
+        Auth.login(token);
+      } catch (e) {
+        console.log(e);
+      }
     }
   };
 
@@ -91,6 +95,11 @@ function Signup(props) {
             />
             <div className="text-danger" style={{ display: formState.showPassError ? 'block' : 'none' }}>Make password at least 6 characters!</div>
           </div>
+          {error ? (
+            <div>
+              <p className="text-center text-danger">{error.message}</p>
+            </div>
+          ) : null}
           <div className="row my-2 mx-3 justify-content-center">
             <button className="btn btn-primary mt-1" type="submit">Signup</button>
           </div>
