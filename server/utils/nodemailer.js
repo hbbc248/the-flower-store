@@ -1,11 +1,14 @@
 const nodemailer = require("nodemailer");
+const hbs = require('nodemailer-express-handlebars');
 
 module.exports = {
-    sendEmail: function (email, args) {
+    sendEmail: function (email, emailData) {
+
+
         // node mailer
         // Create the transporter with the required configuration for Outlook
         // change the user and pass !
-        var transporter = nodemailer.createTransport({
+        let transporter = nodemailer.createTransport({
             host: "smtp-mail.outlook.com", // hostname
             secureConnection: false, // TLS requires secureConnection to be false
             port: 587, // port for secure SMTP
@@ -18,15 +21,28 @@ module.exports = {
             }
         });
 
+        var options = {
+            viewEngine: {
+                extname: '.handlebars',
+                layoutsDir: '../server/views/',
+                defaultLayout: 'index',
+                partialsDir: '../server/views/partials/'
+            },
+            viewPath: '../server/views/'
+        }
+
+        transporter.use('compile', hbs(options));
+
+        
+
         // setup e-mail data, even with unicode symbols
-        var mailOptions = {
+        let mailOptions = {
             from: '"Flower Shop" <flower-shop-project-3@hotmail.com>', // sender address (who sends)
             to: email, // list of receivers (who receives)
             subject: 'Flower Shop - New order confirmation.', // Subject line
-            html: `<b>Flower Shop - New order confirmation</b><br><br>You have posted a new order in the flower shop<br>
-            Order details:<br>Ship to: ${args.shipTo}.<br>Shipping address: ${args.shipToAddress}<br>
-            Message: ${args.message}<br><br>
-            For more details information about the order please log into your Flower Shop account. https://flower-shop-project-3.herokuapp.com/`
+            template: ('index'),
+            context: { 
+                data: emailData }
         };
 
         // send mail with defined transport object

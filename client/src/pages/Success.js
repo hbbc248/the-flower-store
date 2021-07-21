@@ -5,7 +5,7 @@ import { ADD_ORDER } from "../utils/mutations";
 import { idbPromise } from "../utils/helpers";
 
 function Success() {
-  const [addOrder, { error }] = useMutation(ADD_ORDER);
+  const [addOrder] = useMutation(ADD_ORDER);
 
   useEffect(() => {
     async function saveOrder() {
@@ -22,12 +22,12 @@ function Success() {
         }
       }
       orderData["products"] = newProductsArray;
-      
-      const data = {};
+
+
       if (orderData.products.length) {
 
         try {
-          const data = await addOrder({
+          await addOrder({
             variables: {
               shipTo: orderData.shipTo,
               shipToAddress: orderData.shipToAddress,

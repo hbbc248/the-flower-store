@@ -1,28 +1,8 @@
-import React, { useEffect } from "react";
-import { useStoreContext } from "../../utils/GlobalState";
-import { UPDATE_CURRENT_CATEGORY, UPDATE_CATEGORIES } from "../../utils/actions";
-import { QUERY_CATEGORIES } from '../../utils/queries';
-import { useQuery } from '@apollo/client';
-
+import React from "react";
 import Auth from "../../utils/auth";
-import CategoryMenu from "../CategoryMenu";
 
 function Footer () {
-  const [state, dispatch] = useStoreContext();
-
-  const { categories } = state
-
-  const { loading, data } = useQuery(QUERY_CATEGORIES);
-
-  useEffect(() => {
-    if (data) {
-      dispatch({
-        type: UPDATE_CATEGORIES,
-        categories: data.categories
-      })
-    }
-  }, [data, loading, dispatch])
-
+  
 return (
 
     <footer className="text-center text-lg-start bg-light text-muted footer">
@@ -74,7 +54,7 @@ return (
               </h6>
               <p>1111 N Street <br/> Austin, Tx</p>
               <p>
-                flowershop@example.com
+              <a href="mailto:flower-shop-project-3@hotmail.com">flower-shop-project-3@hotmail.com</a>
               </p>
               <p> 1 (234)-567-8900</p>
               {/* <br/> */}

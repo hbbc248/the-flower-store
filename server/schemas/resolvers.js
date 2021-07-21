@@ -1,4 +1,4 @@
-const { AuthenticationError } = require('apollo-server-express');
+const { AuthenticationError, defaultMergedResolver } = require('apollo-server-express');
 const { User, Product, Category, Order } = require('../models');
 const { signToken } = require('../utils/auth');
 const bcrypt = require('bcrypt');
@@ -117,8 +117,58 @@ const resolvers = {
 
         await User.findByIdAndUpdate(context.user._id, { $push: { orders: order } });
 
+        // reform Order in the back end to send email. 
+        const productsIds = args.products;
+        let products = []
+
+        for (let i = 0; i < productsIds.length; i++) {
+          const item = await Product.findById(productsIds[i]);
+          products.push(item);
+        }
+
+        // create new products array and quantities array
+        const newProductsArray = [];
+        const quantitiesArray = [];
+        // While there is still products on initial array
+        while (products.length > 0) {
+          // Push first product into new array and get Id
+          const firstProductId = products[0].name;
+          newProductsArray.push(products[0]);
+          // filter Original array with name to find out how many are the same. 
+          const filterArray = []
+          for (let i = 0; i < products.length; i++) {
+            if (products[i].name === firstProductId) {
+              filterArray.push(products[i])
+            }
+          }
+          // Slice the ones that are the same from original array
+          products = products.slice(filterArray.length);
+          // push quantity into quantity array
+          quantitiesArray.push({ "purchaseQuantity": filterArray.length });
+        }
+        let newArray = [];
+        // Blend both new arrays into one.
+        for (let i = 0; i < newProductsArray.length; i++) {
+          newArray.push({
+            ...newProductsArray[i],
+            ...quantitiesArray[i]
+          });
+        }
+        // Get total pay for the order
+        let totalPaid = 0;
+        for (let i = 0; i < newArray.length; i++) {
+          totalPaid = totalPaid + (newArray[i]._doc.price * newArray[i].purchaseQuantity);
+        }
+        const newTotalPaid = totalPaid.toFixed(2);
+        const emailData = {
+          shipTo: args.shipTo,
+          address: args.shipToAddress,
+          message: args.message,
+          totalPaid: newTotalPaid,
+          productsOrdered: newArray,
+        }
         const email = context.user.email;
-        sendEmail(email, args);      
+        sendEmail(email, emailData);
 
         return order;
       }
